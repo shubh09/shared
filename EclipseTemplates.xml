@@ -1,0 +1,1326 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><templates><template autoinsert="true" context="javadoc" deleted="false" description="author name" enabled="true" id="org.eclipse.jdt.ui.templates.author" name="@author">@author ${user}</template><template autoinsert="true" context="javadoc" deleted="false" description="&lt;b&gt;&lt;/b&gt;" enabled="true" id="org.eclipse.jdt.ui.templates.b_tag" name="&lt;b&gt;">&lt;b&gt;${word_selection}${}&lt;/b&gt;${cursor}</template><template autoinsert="true" context="javadoc" deleted="false" description="&lt;code&gt;&lt;/code&gt;" enabled="true" id="org.eclipse.jdt.ui.templates.code_tag" name="&lt;code&gt;">&lt;code&gt;${word_selection}${}&lt;/code&gt;${cursor}</template><template autoinsert="true" context="javadoc" deleted="false" description="&lt;i&gt;&lt;/i&gt;" enabled="true" id="org.eclipse.jdt.ui.templates.i_tag" name="&lt;i&gt;">&lt;i&gt;${word_selection}${}&lt;/i&gt;${cursor}</template><template autoinsert="true" context="javadoc" deleted="false" description="&lt;pre&gt;&lt;/pre&gt;" enabled="true" id="org.eclipse.jdt.ui.templates.pre_tag" name="&lt;pre&gt;">&lt;pre&gt;${word_selection}${}&lt;/pre&gt;${cursor}</template><template autoinsert="true" context="java" deleted="false" description="fetch 2 space separated integers " enabled="true" name="2ints">String S[]=c.readLine().split(" ");&#13;
+int N=Integer.parseInt(S[0]);&#13;
+int M=Integer.parseInt(S[1]);</template><template autoinsert="true" context="java" deleted="false" description="" enabled="true" name="aaa">System.out.println(Arrays.toString(${cursor}));</template><template autoinsert="false" context="swt-statements" deleted="false" description="add a listener to a Widget " enabled="false" id="org.eclipse.jdt.ui.text.codetemplates.swt.addlistener" name="addlistener">${control:var(org.eclipse.swt.widgets.Widget)}.addListener(${type:link(
+	SWT.Activate,
+	SWT.Arm,
+	SWT.Close,
+	SWT.Collapse,
+	SWT.Deactivate,
+	SWT.DefaultSelection,
+	SWT.Deiconify,
+	SWT.Dispose,
+	SWT.DragDetect,
+	SWT.EraseItem,
+	SWT.Expand,
+	SWT.FocusIn,
+	SWT.FocusOut,
+	SWT.HardKeyDown,
+	SWT.HardKeyUp,
+	SWT.Help,
+	SWT.Hide,
+	SWT.Iconify,
+	SWT.ImeComposition,
+	SWT.KeyDown,
+	SWT.KeyUp,
+	SWT.MeasureItem,
+	SWT.MenuDetect,
+	SWT.Modify,
+	SWT.MouseDoubleClick,
+	SWT.MouseDown,
+	SWT.MouseEnter,
+	SWT.MouseExit,
+	SWT.MouseHover,
+	SWT.MouseMove,
+	SWT.MouseUp,
+	SWT.MouseWheel,
+	SWT.Move,
+	SWT.Paint,
+	SWT.PaintItem,
+	SWT.Resize,
+	SWT.Selection,
+	SWT.SetData,
+	SWT.Settings,
+	SWT.Show,
+	SWT.Traverse,
+	SWT.Verify)}, new ${listener:newType(org.eclipse.swt.widgets.Listener)}(){
+	public void handleEvent(${event:newType(org.eclipse.swt.widgets.Event)} e) {
+		${imp:import(org.eclipse.swt.SWT)}${cursor}				
+	}
+});</template><template autoinsert="true" context="java" deleted="false" description="Range compression" enabled="true" name="Array">/*&#13;
+ * Compresses the range of an array A in NLogN time. Only preserves the&#13;
+ * relative order of the elements in the array: least element is 2. &#13;
+ * Returns the number of distinct elements in the array. &#13;
+ */&#13;
+public static int orderOnly(int A[])&#13;
+	{&#13;
+	HashSet&lt;Integer&gt; TS=new HashSet&lt;Integer&gt;();&#13;
+	for(int a:A)&#13;
+		TS.add(a);&#13;
+	HashMap&lt;Integer,Integer&gt; Map=new HashMap&lt;Integer, Integer&gt;();&#13;
+	int target=2;&#13;
+	for(int t:TS)&#13;
+		{&#13;
+		Map.put(t,target);&#13;
+		target++;&#13;
+		}&#13;
+	for(int i=0;i&lt;A.length;i++)&#13;
+		A[i]=Map.get(A[i]);&#13;
+	return TS.size();&#13;
+	}</template><template autoinsert="false" context="java-statements" deleted="false" description="add an element to an array" enabled="true" id="org.eclipse.jdt.ui.templates.arrayadd" name="arrayadd">${array_type}[] ${result:newName(array)} = new ${array_type}[${array}.length + 1];
+System.arraycopy(${array}, 0, ${result}, 0, ${array}.length);
+${result}[${array}.length]= ${var};</template><template autoinsert="false" context="java-statements" deleted="false" description="merge two arrays into one" enabled="true" id="org.eclipse.jdt.ui.templates.arraymerge" name="arraymerge">${array_type}[] ${result:newName(array1)} = new ${array_type}[${array1:array}.length + ${array}.length];
+System.arraycopy(${array1}, 0, ${result}, 0, ${array1}.length);
+System.arraycopy(${array}, 0, ${result}, ${array1}.length, ${array}.length);</template><template autoinsert="true" context="java" deleted="false" description="array occurence count" enabled="true" name="arrays">/*Returns a HashMap which maps integers to the number of times they&#13;
+	 * occur in the array A.&#13;
+	 */&#13;
+private static HashMap&lt;Integer, Integer&gt; arrayOccurenceCount(int[] A)&#13;
+	{&#13;
+	HashMap&lt;Integer,Integer&gt; map=new HashMap&lt;Integer,Integer&gt;();&#13;
+	for(int i=0;i&lt;A.length;i++)&#13;
+		{&#13;
+		if(map.containsKey(A[i]))&#13;
+			map.put(A[i],map.get(A[i])+1);&#13;
+		else&#13;
+			map.put(A[i],1);&#13;
+		}&#13;
+	return map;&#13;
+	}</template><template autoinsert="true" context="java" deleted="false" description="" enabled="true" name="binary search">/*binary search in th limit [0,2*10^9] to get value&#13;
+such that f(val)=W*/&#13;
+long lo=0;&#13;
+long hi=2000000000;&#13;
+while(hi-lo&gt;=10)&#13;
+	{&#13;
+	System.out.println("("+hi+", "+lo+")");&#13;
+	int mid=(int)((lo+hi)/2);&#13;
+	if(f(mid)&lt;W)&#13;
+		lo=mid-1;&#13;
+	else &#13;
+		hi=mid+1;&#13;
+	}&#13;
+System.out.println("oo ("+hi+", "+lo+")");&#13;
+for(int i=(int)lo;i&lt;=hi;i++)&#13;
+	{&#13;
+	if(f(i)==W)&#13;
+		return i;&#13;
+	}</template><template autoinsert="true" context="java" deleted="false" description="find v s.t. f(v)&gt;=k" enabled="true" name="binary search find">/*&#13;
+	 * Returns a value v s.t. f(v)&gt;=k. v must lie b/w lo and hi (inclusive).&#13;
+	 * Take care of overflows which checking f(i)&gt;=k. If f(i) is large for i,&#13;
+	 * f(i) may overflow. This code avoids all off-by-one errors. Do not give&#13;
+	 * hi as Long.MAX_VALUE to avoid overflows.&#13;
+	 */&#13;
+	private static long find_binSearch(long k, long lo, long hi)&#13;
+		{&#13;
+		long mid=(lo+hi)/2;&#13;
+		if(hi-lo&lt;=5)&#13;
+			{&#13;
+			for(long i=lo;i&lt;=hi;i++) &#13;
+				{&#13;
+				if(f(i)&gt;=k)&#13;
+					return i;&#13;
+				}&#13;
+			}&#13;
+		if(f(mid)&lt;k)&#13;
+			return find_binSearch(k,mid-1,hi);&#13;
+		else&#13;
+			return find_binSearch(k,lo,mid+1);&#13;
+			&#13;
+		}&#13;
+	&#13;
+	private static long f(long i)&#13;
+		{&#13;
+		return i*i;&#13;
+		}</template><template autoinsert="true" context="java" deleted="false" description="Binary Indexed Tree" enabled="true" name="bit">/*&#13;
+ * Create a BinaryIndexedTree where query(i) returns the sum&#13;
+ * of entries 1--&gt;i.&#13;
+ * IMPORTANT: Array indices supported are 1--&gt;N for both query&#13;
+ * and update operations.&#13;
+ */&#13;
+class BinaryIndexedTree&#13;
+	{&#13;
+	int bit[];&#13;
+	int n;&#13;
+	public BinaryIndexedTree(int n)&#13;
+		{&#13;
+		this.bit=new int[n+1];&#13;
+		this.n=n;&#13;
+		}&#13;
+	public int query(int i)           	//get the sum A[1]--&gt;A[i];&#13;
+		{&#13;
+		int ans=0;&#13;
+		while(i&gt;0)&#13;
+			{&#13;
+			ans+=bit[i];&#13;
+			i-=i&amp;(-i);&#13;
+			}&#13;
+		return ans;&#13;
+		}&#13;
+	&#13;
+	public void update(int i,int val)    //A[i]--&gt;A[i]+val&#13;
+		{&#13;
+		while(i&lt;=n)&#13;
+			{&#13;
+			bit[i]+=val;&#13;
+			i+=i&amp;(-i);    &#13;
+			}&#13;
+		} &#13;
+	}</template><template autoinsert="true" context="java" deleted="false" description="isset, set and clr" enabled="true" name="bitmasks">/*&#13;
+* Simple bitmask code for boolean isset, int set and int clr&#13;
+*/&#13;
+public static boolean isset(int n,int i)		//returns 1 if the ith bit (from left) of n is set&#13;
+	{&#13;
+	return ((n&gt;&gt;i)&amp;1)==1; &#13;
+	}&#13;
+public static int set(int n,int i)				//makes the ith bit (from left) of n=1&#13;
+	{&#13;
+	return n|(1&lt;&lt;i); &#13;
+	}&#13;
+public static int clr(int n,int i)				//makes the ith bit (from left) of n=0&#13;
+	{&#13;
+	return n&amp;(~(1&lt;&lt;i));&#13;
+	}&#13;
+public static int max_set(int n)&#13;
+	{&#13;
+	for(int i=31;i&gt;=0;i--)&#13;
+		if(isset(n,i))&#13;
+			return i;&#13;
+	return 0;&#13;
+	}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new Browser" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.browser" name="Browser">${browserType:newType(org.eclipse.swt.browser.Browser)} ${browser:newName(org.eclipse.swt.browser.Browser)}= new ${browserType}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link(SWT.NONE, SWT.MOZILLA)});
+${browser}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(FILL, BEGINNING, CENTER, END)}, SWT.${vertical:link(FILL, TOP, CENTER, BOTTOM)}, ${hex:link(true, false)}, ${vex:link(true, false)}));
+${browser}.setUrl(${word_selection}${});
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new Button" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.button" name="Button">${buttonType:newType(org.eclipse.swt.widgets.Button)} ${button:newName(org.eclipse.swt.widgets.Button)}= new ${buttonType}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link(SWT.PUSH, SWT.TOGGLE, SWT.RADIO, SWT.CHECK, SWT.FLAT)});
+${button}.setLayoutData(new ${type:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(BEGINNING, CENTER, END, FILL)}, SWT.${vertical:link(CENTER, TOP, BOTTOM, FILL)}, ${hex:link(false, true)}, ${vex:link(false, true)}));
+${button}.setText(${word_selection}${});
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="false" context="java-statements" deleted="false" description="dynamic cast" enabled="true" id="org.eclipse.jdt.ui.templates.cast" name="cast">${type} ${new_name} = (${type}) ${name};</template><template autoinsert="false" context="java" deleted="false" description="catch block" enabled="true" id="org.eclipse.jdt.ui.templates.catch" name="catch">catch (${Exception} ${exception_variable_name}) {
+	${cursor}// ${todo}: handle exception
+}</template><template autoinsert="true" context="java" deleted="false" description="Codeforces Template" enabled="true" name="cf">import java.util.*;
+import java.math.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main(String[] args) throws IOException
+	{
+		//BufferedReader c = new BufferedReader(new InputStreamReader(System.in));
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		int i,j;
+		${cursor}
+		for (i = 0; i &lt; n; i++)
+		{
+		}
+	}
+}
+</template><template autoinsert="true" context="java" deleted="false" description="checks whether the index [i][j] is inside the array A[N][M]" enabled="true" name="checkBounds">public static boolean checkBounds(int i,int j,int N,int M)&#13;
+	{&#13;
+	if(i&gt;=0&amp;&amp;i&lt;N&amp;&amp;j&gt;=0&amp;&amp;j&lt;M)&#13;
+		return true;&#13;
+	return false;&#13;
+	}</template><template autoinsert="true" context="java" deleted="false" description="" enabled="true" name="cod">import java.util.*;
+import java.math.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main(String[] args) throws IOException
+	{
+		BufferedReader c = new BufferedReader(new InputStreamReader(System.in));
+		int T = Integer.parseInt(c.readLine());
+		//Scanner sc=new Scanner(System.in);
+		//int T=sc.nextInt();
+		int i,j;
+		for (int t = 0; t &lt; T; t++)
+		{
+			${cursor}
+		}
+	}
+}
+</template><template autoinsert="false" context="swt-statements" deleted="false" description="new Combo" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.combo" name="Combo">${comboType:newType(org.eclipse.swt.widgets.Combo)} ${combo:newName(org.eclipse.swt.widgets.Combo)}= new ${comboType}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link(SWT.DROP_DOWN, 'SWT.DROP_DOWN | SWT.READ_ONLY')});
+${combo}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(FILL, BEGINNING, CENTER, END)}, SWT.${vertical:link(CENTER, TOP, BOTTOM, FILL)}, ${hex:link(true, false)}, ${vex:link(false, true)}));
+${combo}.setItems(${word_selection}${});
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="true" context="java" deleted="false" description="generates numbers which are combinations of some digits (specified in an array)" enabled="true" name="comboGen">/*&#13;
+ * Generates numbers which are made of the digits in&#13;
+ * options[] in increasing order. &#13;
+ * &#13;
+ * A possible problem may be a huge size of the queue&#13;
+ * Q.&#13;
+ */&#13;
+class comboGen&#13;
+	{&#13;
+	public static Queue&lt;Long&gt; Q;	&#13;
+	public static int options[];	//the possible digits&#13;
+	&#13;
+	public comboGen(int A[])&#13;
+		{&#13;
+		Arrays.sort(A);				//sort the possibilities&#13;
+		options = new int[A.length];&#13;
+		Q=new LinkedList&lt;Long&gt;();&#13;
+		for(int i=0;i&lt;A.length;i++) &#13;
+			{&#13;
+			options[i]=A[i];&#13;
+			Q.add((long)A[i]);&#13;
+			}&#13;
+		}&#13;
+	public static long next()&#13;
+		{&#13;
+		long t=Q.poll();&#13;
+		for(int i=0;i&lt;options.length;i++) &#13;
+			{&#13;
+			Q.add(t*10+options[i]);		//add the new numbers&#13;
+			}&#13;
+		return t;&#13;
+		}&#13;
+	}&#13;
+&#13;
+//must declare new classes here</template><template autoinsert="true" context="java" deleted="false" description="create a comparator class" enabled="true" name="comparator">class comp implements Comparator&#13;
+	{&#13;
+	public int compare(Object o1, Object o2)&#13;
+		{&#13;
+		interval i1=(interval)o1;&#13;
+		interval i2=(interval)o2;&#13;
+		if(i1.j&lt;i2.j)&#13;
+			return 0;&#13;
+		return 1;&#13;
+		}&#13;
+	}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new Composite with GridLayout" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.gridcomposite" name="Composite">${compositeType:newType(org.eclipse.swt.widgets.Composite)} ${composite:newName(org.eclipse.swt.widgets.Composite)}= new ${compositeType}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link(SWT.NONE, SWT.BORDER)});
+${composite}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(FILL, BEGINNING, CENTER, END)}, SWT.${vertical:link(FILL, TOP, CENTER, BOTTOM)}, ${hex:link(true, false)}, ${vex:link(true, false)}));
+${composite}.setLayout(new ${layoutType:newType(org.eclipse.swt.layout.GridLayout)}(${numberColumns:link(1, 2, 3, 4, 5)}, ${equalColumns:link(false, true)}));
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new DateTime" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.datetime" name="DateTime">${dateType:newType(org.eclipse.swt.widgets.DateTime)} ${dateTime:newName(org.eclipse.swt.widgets.DateTime)}= new ${dateType}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link('SWT.CALENDAR | SWT.SHORT', 'SWT.CALENDAR | SWT.MEDIUM', 'SWT.CALENDAR | SWT.LONG', 'SWT.TIME | SWT.SHORT', 'SWT.TIME | SWT.MEDIUM', 'SWT.TIME | SWT.LONG', 'SWT.DATE | SWT.SHORT', 'SWT.DATE | SWT.MEDIUM', 'SWT.DATE | SWT.LONG')});
+${dateTime}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(FILL, BEGINNING, CENTER, END)}, SWT.${vertical:link(FILL, TOP, CENTER, BOTTOM)}, ${hex:link(true, false)}, ${vex:link(true, false)}));
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="true" context="java" deleted="false" description="print 2D arrays" enabled="true" name="debug">public static void print(int A[][])&#13;
+		{&#13;
+		int N=A.length;&#13;
+		int n=A[0].length;&#13;
+		for(int lol=0;lol&lt;N;lol++)&#13;
+			{&#13;
+			for(int bol=0;bol&lt;n;bol++)&#13;
+				System.out.print(A[lol][bol]+" ");&#13;
+			System.out.println();&#13;
+			}&#13;
+		System.out.println();&#13;
+		}</template><template autoinsert="true" context="java" deleted="false" description="print int A[]" enabled="true" name="debug">public static void print(int A[])&#13;
+	{&#13;
+	int n=A.length;&#13;
+	for(int i=0;i&lt;n;i++)&#13;
+		System.out.print(A[i]+" ");&#13;
+	System.out.println();&#13;
+	}</template><template autoinsert="true" context="java" deleted="false" description="print long A[]" enabled="true" name="debug">public static void print(long A[])&#13;
+	{&#13;
+	int n=A.length;&#13;
+	for(int i=0;i&lt;n;i++)&#13;
+		System.out.print(A[i]+" ");&#13;
+	System.out.println();&#13;
+	}</template><template autoinsert="true" context="java" deleted="false" description="Arrays for grid traversals" enabled="true" name="didj">static int di[]={-1,0,1,0};&#13;
+static int dj[]={0,1,0,-1};</template><template autoinsert="true" context="java" deleted="false" description="number of differences between 2 arrays" enabled="true" name="diff">private static int diff(${argType}[] a,${argType}[] b)&#13;
+	{&#13;
+	int ans=0;&#13;
+	for(int i=0;i&lt;a.length;i++) &#13;
+		{&#13;
+		if(a[i]!=b[i])&#13;
+			ans++;&#13;
+		}&#13;
+	return ans;&#13;
+	}</template><template autoinsert="true" context="java" deleted="false" description="sum and product of digits" enabled="true" name="digits">private static int sum_of_digits(int i)&#13;
+		{&#13;
+		int ans=0;&#13;
+		while(i&gt;0)&#13;
+			{&#13;
+			ans+=i%10;&#13;
+			i=i/10;&#13;
+			}&#13;
+		return ans;&#13;
+		}&#13;
+	&#13;
+	private static int product_of_digits(int i)&#13;
+		{&#13;
+		int ans=1;&#13;
+		while(i&gt;0)&#13;
+			{&#13;
+			ans*=i%10;&#13;
+			i=i/10;&#13;
+			}&#13;
+		return ans;&#13;
+		}</template><template autoinsert="true" context="java" deleted="false" description="primes: distinct primes array" enabled="true" name="distinct_primes">public static int[] distinct_primes(long N)&#13;
+		{&#13;
+		int len=0;&#13;
+		long temp=N;&#13;
+		for(long i=2;i*i&lt;=N;i++)&#13;
+			{&#13;
+			if(N%i==0)&#13;
+				len++;&#13;
+			while(N%i==0)&#13;
+				N=N/i;&#13;
+			}&#13;
+		if(N&gt;1)					//a residue prime number&#13;
+			len++;				//code till here finds the number of distinct prime factors &#13;
+		N=temp;&#13;
+		int A[]=new int[len];&#13;
+		int index=0;&#13;
+		for(long i=2;i*i&lt;=N;i++)&#13;
+			{&#13;
+			if(N%i==0)&#13;
+				{&#13;
+				A[index]=(int)i;&#13;
+				index++;&#13;
+				}&#13;
+			while(N%i==0)&#13;
+				{&#13;
+				N=N/i;&#13;
+				len++;&#13;
+				}&#13;
+			}&#13;
+		if(N&gt;1)&#13;
+			A[index]=(int)N;&#13;
+		return A;&#13;
+		}</template><template autoinsert="false" context="java-statements" deleted="false" description="do while statement" enabled="true" id="org.eclipse.jdt.ui.templates.do" name="do">do {
+	${line_selection}${cursor}
+} while (${condition:var(boolean)});</template><template autoinsert="true" context="java" deleted="false" description="" enabled="true" name="DPprint">System.out.println("DP["+i+"]["+j+"] is "+DP[i][j]);</template><template autoinsert="true" context="java" deleted="false" description="simple edmonds karp max flow" enabled="true" name="edmonds karp">	public static int F[][];&#13;
+	public static int par[];&#13;
+	public static int edmondsKarp(int C[][],int s,int t)&#13;
+		{&#13;
+		F=new int[C.length][C.length];				//create a new N*N flow matrix&#13;
+		par=new int[C.length];						//create a parent array: for the flow path&#13;
+		int f=0;									//initialize flow=0&#13;
+		while(true)										//while its possible to augment&#13;
+			{	&#13;
+			int m=bfs(C,s,t);							//get the bottleneck edge, modify the parent array&#13;
+			if(m==0)									//if bottleneck is 0, we are done&#13;
+				break;&#13;
+			f=f+m;;										//else, increase flow&#13;
+			int v=t;									//trace the augmented path from the sink&#13;
+			while(v!=s)&#13;
+				{&#13;
+				int u=par[v];&#13;
+				F[u][v]=F[u][v]+m;&#13;
+				F[v][u]=F[v][u]-m;&#13;
+				v=u;&#13;
+				}&#13;
+			}&#13;
+		return f;&#13;
+		}&#13;
+	&#13;
+	public static int bfs(int C[][],int s,int t)				//performs a bfs, returns bottlenect edge, modifies parent array&#13;
+		{	&#13;
+		int M[]=new int[C.length];								&#13;
+		Arrays.fill(par,-1);									&#13;
+		par[s]=-2;&#13;
+		Arrays.fill(M,Integer.MAX_VALUE);&#13;
+		Queue&lt;Integer&gt; Q=new LinkedList&lt;Integer&gt;();&#13;
+		Q.add(s);&#13;
+		while(Q.size()!=0)&#13;
+			{&#13;
+			int u=Q.poll();&#13;
+			for(int v=0;v&lt;C.length;v++)&#13;
+				{&#13;
+				if(C[u][v]!=0||C[v][u]!=0)&#13;
+					{&#13;
+					if(C[u][v]-F[u][v]&gt;0 &amp;&amp;par[v]==-1)&#13;
+						{&#13;
+						par[v]=u;&#13;
+						M[v]=Math.min(M[u],C[u][v]-F[u][v]);&#13;
+						if(v!=t)&#13;
+							Q.add(v);&#13;
+						else&#13;
+							return M[t];&#13;
+						}&#13;
+					}&#13;
+				}//end for&#13;
+			}&#13;
+		return 0;&#13;
+		}</template><template autoinsert="false" context="java-statements" deleted="false" description="else block" enabled="true" id="org.eclipse.jdt.ui.templates.else" name="else">else {
+	${cursor}
+}</template><template autoinsert="false" context="java-statements" deleted="false" description="else if block" enabled="true" id="org.eclipse.jdt.ui.templates.elseif" name="elseif">else if (${condition:var(boolean)}) {
+	${cursor}
+}</template><template autoinsert="true" context="java" deleted="false" description="Vanilla seive of eratosthenes" enabled="true" name="eratos">/*&#13;
+	 * Fills the boolean A[i] with true iff i is a prime.&#13;
+	 * Works in .35 seconds for N=10000000.&#13;
+	 * &#13;
+	 * For primes upto 100, pass N=101.&#13;
+	 */&#13;
+	private static boolean[] eratos(int N)&#13;
+		{&#13;
+		boolean A[]=new boolean[N];&#13;
+		Arrays.fill(A,true);&#13;
+		A[0]=false;&#13;
+		A[1]=false;&#13;
+		for(int i=2;i&lt;N;i++) &#13;
+			{&#13;
+			if(A[i]==true)	//a prime&#13;
+				{&#13;
+				int num=i+i;&#13;
+				while(num&lt;N)&#13;
+					{&#13;
+					A[num]=false;&#13;
+					num+=i;&#13;
+					}&#13;
+				}&#13;
+			}&#13;
+		return A;&#13;
+		}&#13;
+	}</template><template autoinsert="false" context="swt-statements" deleted="false" description="execute a runnable in the UI thread" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.execute" name="execute">${display:var(org.eclipse.swt.widgets.Display)}.${kind:link(syncExec, asyncExec)}(new ${runnable:newType(java.lang.Runnable)}(){
+	public void run(){
+		${cursor}
+	}
+});</template><template autoinsert="false" context="swt-statements" deleted="false" description="new ExpandBar" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.expandbar" name="ExpandBar">${type:newType(org.eclipse.swt.widgets.ExpandBar)} ${bar:newName(org.eclipse.swt.widgets.ExpandBar)}= new ${type}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link(SWT.V_SCROLL, SWT.NONE)});
+${bar}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(FILL, BEGINNING, CENTER, END)}, SWT.${vertical:link(FILL, TOP, CENTER, BOTTOM)}, ${hex:link(true, false)}, ${vex:link(true, false)}));
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new ExpandItem for an ExpandBar" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.expanditem" name="ExpandItem">${type:newType(org.eclipse.swt.widgets.ExpandItem)} ${item:newName(org.eclipse.swt.widgets.ExpandItem)}= new ${type}(${parent:var(org.eclipse.swt.widgets.ExpandBar)}, SWT.NONE);
+${item}.setText(${word_selection}${});
+${imp:import(org.eclipse.swt.SWT)}${cursor}
+
+${item}.setControl(${control});
+${item}.setHeight(${control}.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);</template><template autoinsert="true" context="java" deleted="false" description="factorial using BigIntegers" enabled="true" name="factorial">public static BigInteger fact(int n)&#13;
+	{&#13;
+	BigInteger ans=new BigInteger("1");;&#13;
+	while(n&gt;0)&#13;
+		{&#13;
+		ans=ans.multiply(new BigInteger(Integer.toString(n)));&#13;
+		n--;		&#13;
+		}&#13;
+	return ans;&#13;
+	}</template><template autoinsert="true" context="java" deleted="false" description="total number of factors including 1 and the number" enabled="true" name="factors"/><template autoinsert="false" context="java" deleted="false" description="$FALL-THROUGH$ marker" enabled="true" id="org.eclipse.jdt.ui.templates.fall-through" name="fall-through">//$$FALL-THROUGH$$</template><template autoinsert="true" context="javadoc" deleted="false" description="&lt;code&gt;false&lt;/code&gt;" enabled="true" id="org.eclipse.jdt.ui.templates.code_tag_false" name="false">&lt;code&gt;false&lt;/code&gt;</template><template autoinsert="true" context="java" deleted="false" description="N^3 algorithm for all source shortest paths" enabled="true" name="floyd warshall">/*&#13;
+ * Given a weighted directed graph in the form of an adjacency matrix,&#13;
+ * computes the 2D array "distance" where distance[j][k] is the minimum &#13;
+ * distance between nodes j and k. The value of adjMatrix[i][j] should be&#13;
+ * Integer.MAX_VALUE if there is no directed edge between nodes i and j.  &#13;
+ */&#13;
+private static int[][] floydWarshall(int[][] adjMatrix)&#13;
+	{&#13;
+	int N=adjMatrix.length;&#13;
+	int[][] distance = new int[N][N];&#13;
+	for(int i=0;i&lt;N;i++)&#13;
+		distance[i]=Arrays.copyOf(adjMatrix[i],adjMatrix[i].length);&#13;
+	for(int i=0;i&lt;N;i++) &#13;
+		{&#13;
+		for(int j=0;j&lt;N;j++) &#13;
+			{&#13;
+			for(int k=0;k&lt;N;k++)&#13;
+				{&#13;
+				if(distance[j][i]!=Integer.MAX_VALUE&amp;&amp;distance[i][k]!=Integer.MAX_VALUE)&#13;
+					distance[j][k]=Math.min(distance[j][k],distance[j][i]+distance[i][k]);&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	return distance;&#13;
+	}</template><template autoinsert="false" context="java-statements" deleted="false" description="iterate over array" enabled="true" id="org.eclipse.jdt.ui.templates.for_array" name="for">for(int ${index}=0;${index}&lt;${N};${index}++) 
+	{
+	${line_selection}${cursor}
+	}</template><template autoinsert="false" context="java-statements" deleted="false" description="iterate over array with temporary variable" enabled="true" id="org.eclipse.jdt.ui.templates.for_temp" name="for">for (int ${index} = 0; ${index} &lt; ${array}.length; ${index}++) {
+	${array_type} ${array_element} = ${array}[${index}];
+	${cursor}
+}</template><template autoinsert="false" context="java-statements" deleted="false" description="iterate over collection" enabled="true" id="org.eclipse.jdt.ui.templates.for_collection" name="for">for (${iteratorType:newType(java.util.Iterator)} ${iterator} = ${collection}.iterator(); ${iterator}.hasNext(); ) {
+	${type:elemType(collection)} ${name:newName(type)} = (${type}) ${iterator}.next();
+	${cursor}
+}</template><template autoinsert="false" context="java-statements" deleted="false" description="iterate over an array or Iterable" enabled="true" id="org.eclipse.jdt.ui.templates.for_iterable" name="foreach">for (${iterable_type} ${iterable_element} : ${iterable}) {
+	${cursor}
+}</template><template autoinsert="true" context="java" deleted="false" description="calculate gcd of 2 integers very fast" enabled="true" name="gcd">public static int gcd(int i, int j)&#13;
+		{&#13;
+		if(i&lt;j)&#13;
+			return gcd(j,i);&#13;
+	    if(j==0)&#13;
+	       return i;&#13;
+	    else&#13;
+	       return gcd(j,i%j);&#13;
+		}</template><template autoinsert="true" context="java" deleted="false" description="get an Integer" enabled="true" name="get">int ${cursor}=c.nextInt();</template><template autoinsert="true" context="java" deleted="false" description="directed graph" enabled="true" name="graph">class digraph&#13;
+	{&#13;
+	public node G[];&#13;
+	public int N;&#13;
+	public digraph(int N)&#13;
+		{&#13;
+		this.N=N;&#13;
+		G=new node[N];&#13;
+		for(int i=0;i&lt;N;i++)&#13;
+            {&#13;
+            G[i]=new node();&#13;
+            G[i].E=new LinkedList&lt;Integer&gt;();            //a node must have 2 lists: outgoing edges and incoming edges &#13;
+            G[i].Rev=new LinkedList&lt;Integer&gt;();&#13;
+            }&#13;
+		}&#13;
+	public void add_egde(int a, int b)&#13;
+		{&#13;
+		(G[a].E).add(b);							//add forward edge&#13;
+		(G[b].Rev).add(a);							//add reverse edge&#13;
+		}&#13;
+	&#13;
+	public int[] topological_sort()&#13;
+		{&#13;
+		int TS[]=new int[N];&#13;
+		int ts_i=0;&#13;
+		TreeSet&lt;Integer&gt; T=new TreeSet&lt;Integer&gt;();			//a set to contain nodes with in degree=0&#13;
+		int inDeg[]=new int[N];								//an array which stores in degree&#13;
+		for(int i=0;i&lt;N;i++)								//for every node&#13;
+			{&#13;
+			for(int v: G[i].E)    &#13;
+				inDeg[v]++;									//increase inDegree of adjacent nodes:O(n+m)&#13;
+			}    &#13;
+		for(int i=0;i&lt;N;i++)								//initialize the set S: O(N)&#13;
+			{&#13;
+			if(inDeg[i]==0)									//consider all nodes with inDegree=0&#13;
+				T.add(i);&#13;
+			}&#13;
+		while(!T.isEmpty())&#13;
+			{&#13;
+			int temp=T.pollFirst();							//take an element from the set T and remove it&#13;
+			TS[ts_i]=temp;&#13;
+			ts_i++;&#13;
+			for(int v: G[temp].E)&#13;
+				{&#13;
+				inDeg[v]--;&#13;
+				if(inDeg[v]==0)								//if a neighbour's inDegree becomes 0: add it to the 0 degree set&#13;
+					T.add(v);&#13;
+				}    &#13;
+			}&#13;
+		if(T.isEmpty()&amp;&amp;ts_i!=N)							//condition for no topological sort to exist &#13;
+			return null;&#13;
+		return TS;&#13;
+		}&#13;
+	class node												//a node must have 2 lists: forward edges and backward edges&#13;
+    	{													//forward edges are required for reducing the inDegree&#13;
+    	LinkedList&lt;Integer&gt; E,Rev;							//backward edges are needed for Longest PATH DP&#13;
+    	}&#13;
+	}</template><template autoinsert="true" context="java" deleted="false" description="Undirected graph class" enabled="true" name="graph">/*Undirected graph class. Vertices are indexed 0--&gt;N-1*/&#13;
+class uGraph&#13;
+	{&#13;
+	int N;							//number of nodes&#13;
+	List&lt;Integer&gt; edge_list[];	&#13;
+	public uGraph(int N)&#13;
+		{&#13;
+		this.N=N;&#13;
+		edge_list=new LinkedList[N];&#13;
+		for(int i=0;i&lt;N;i++) 		//create N Linked Lists&#13;
+			edge_list[i]=new LinkedList&lt;Integer&gt;();&#13;
+		}&#13;
+&#13;
+	/*&#13;
+	 * Adds a new undirected edge u-v to the graph&#13;
+	 */&#13;
+	public void add_edge(int u,int v)&#13;
+		{&#13;
+		edge_list[u].add(v);&#13;
+		edge_list[v].add(u);&#13;
+		}&#13;
+	/*&#13;
+	 * Returns a List containing &gt;=1 linked lists. Each linked list &#13;
+	 * is a separate connected component of the undirected graph.&#13;
+	 */&#13;
+	public List&lt;LinkedList&lt;Integer&gt;&gt; getConnectedComponents()&#13;
+		{&#13;
+		List&lt;LinkedList&lt;Integer&gt;&gt; scc=new LinkedList&lt;LinkedList&lt;Integer&gt;&gt;();		//a list of linked lists	&#13;
+		boolean visited[]=new boolean[N];		&#13;
+		for(int i=0;i&lt;N;i++) 		&#13;
+			{&#13;
+			if(!visited[i])															//choose an unvisited node&#13;
+				{&#13;
+				visited[i]=true;&#13;
+				LinkedList&lt;Integer&gt; newComponent= new LinkedList&lt;Integer&gt;();		//a Linked List for the new component&#13;
+				Queue&lt;Integer&gt; Q=new LinkedList&lt;Integer&gt;();							//a queue for BFS&#13;
+				Q.add(i);&#13;
+				newComponent.add(i);&#13;
+				&#13;
+				while(!Q.isEmpty())&#13;
+					{&#13;
+					int node=Q.poll();&#13;
+					Iterator&lt;Integer&gt; it=edge_list[node].iterator();&#13;
+					while(it.hasNext())&#13;
+						{&#13;
+						int neighbour=it.next();&#13;
+						if(!visited[neighbour])&#13;
+							{&#13;
+							visited[neighbour]=true;&#13;
+							Q.add(neighbour);&#13;
+							newComponent.add(neighbour);&#13;
+							}&#13;
+						}&#13;
+					}&#13;
+				scc.add(newComponent);												//add a new strongly connected component&#13;
+				}&#13;
+			}&#13;
+		return scc;&#13;
+		}&#13;
+	}&#13;
+</template><template autoinsert="false" context="swt-statements" deleted="false" description="new GridData for a Control" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.griddata" name="GridData">${gridData:newType(org.eclipse.swt.layout.GridData)} ${layoutData:newName(org.eclipse.swt.layout.GridData)} = new ${gridData}(SWT.${horizontal:link(FILL, BEGINNING, CENTER, END)}, SWT.${vertical:link(FILL, TOP, CENTER, BOTTOM)}, ${hex:link(true, false)}, ${vex:link(false, true)});
+${layoutData}.widthHint= ${width:link(SWT.DEFAULT)};
+${layoutData}.heightHint= ${height:link(SWT.DEFAULT)};
+${parent:var(org.eclipse.swt.widgets.Control)}.setLayoutData(${layoutData});
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new GridLayout for a Composites" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.gridlayout" name="GridLayout">${gridLayout:newType(org.eclipse.swt.layout.GridLayout)} ${layout:newName(org.eclipse.swt.layout.GridLayout)} = new ${gridLayout}(${columns:link(1, 2, 3, 4, 5)}, ${width:link(false, true)});
+${layout}.marginWidth = ${marginW:link(5, 0)};
+${layout}.marginHeight = ${marginH:link(5, 0)};
+${layout}.verticalSpacing = ${vSpacing:link(0, 5)};
+${layout}.horizontalSpacing = ${hSpacing:link(0, 5)};
+${parent:var(org.eclipse.swt.widgets.Composite)}.setLayout(${layout});
+${cursor}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new Group with GridLayout" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.group" name="Group">${groupType:newType(org.eclipse.swt.widgets.Group)} ${group:newName(org.eclipse.swt.widgets.Group)}= new ${groupType}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link(SWT.NONE, SWT.SHADOW_ETCHED_IN, SWT.SHADOW_ETCHED_OUT, SWT.SHADOW_IN, SWT.SHADOW_OUT, SWT.SHADOW_NONE)});
+${group}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(FILL, BEGINNING, CENTER, END)}, SWT.${vertical:link(FILL, TOP, CENTER, BOTTOM)}, ${hex:link(true, false)}, ${vex:link(false, true)}));
+${group}.setLayout(new ${layoutType:newType(org.eclipse.swt.layout.GridLayout)}(${numberColumns:link(1, 2, 3, 4, 5)}, ${equalColumns:link(false, true)}));
+${group}.setText(${word_selection}${});
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="true" context="java" deleted="false" description="Returns the lower case histogram of the string" enabled="true" name="hist">	public static int [] hist(String s)&#13;
+		{&#13;
+		int h[]=new int[26];&#13;
+		for(int i=0;i&lt;s.length();i++) &#13;
+			{&#13;
+			h[s.charAt(i)-'a']++;&#13;
+			}&#13;
+		return h;&#13;
+		}</template><template autoinsert="false" context="java-statements" deleted="false" description="if statement" enabled="true" id="org.eclipse.jdt.ui.templates.if" name="if">if (${condition:var(boolean)}) {
+	${line_selection}${cursor}
+}</template><template autoinsert="false" context="java-statements" deleted="false" description="if else statement" enabled="true" id="org.eclipse.jdt.ui.templates.ifelse" name="ifelse">if (${condition:var(boolean)}) {
+	${cursor}
+} else {
+	
+}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new Image" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.image" name="Image">${labelType:newType(org.eclipse.swt.widgets.Label)} ${image:newName(org.eclipse.swt.widgets.Label)}= new ${labelType}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link(SWT.NONE, SWT.BORDER)});
+${image}.setLayoutData(new ${type:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(BEGINNING, CENTER, END, FILL)}, SWT.${vertical:link(CENTER, TOP, BOTTOM, FILL)}, ${hex:link(false, true)}, ${vex:link(false, true)}));
+${image}.setImage(${word_selection}${});
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="false" context="java-statements" deleted="false" description="dynamic type test and cast" enabled="true" id="org.eclipse.jdt.ui.templates.instanceof" name="instanceof">if (${name:var} instanceof ${type}) {
+	${type} ${new_name} = (${type})${name};
+	${cursor}
+}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new Label" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.label" name="Label">${labelType:newType(org.eclipse.swt.widgets.Label)} ${label:newName(org.eclipse.swt.widgets.Label)}= new ${labelType}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link(SWT.NONE, SWT.WRAP, 'SWT.SEPARATOR | SWT.HORIZONTAL', 'SWT.SEPARATOR | SWT.VERTICAL')});
+${label}.setLayoutData(new ${type:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(BEGINNING, CENTER, END, FILL)}, SWT.${vertical:link(CENTER, TOP, BOTTOM, FILL)}, ${hex:link(false, true)}, ${vex:link(false, true)}));
+${label}.setText(${word_selection}${});
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="false" context="java-statements" deleted="false" description="lazy creation" enabled="true" id="org.eclipse.jdt.ui.templates.lazy" name="lazy">if (${name:var} == null) {
+	${name} = new ${type}(${arguments});
+	${cursor}
+}
+
+return ${name};</template><template autoinsert="false" context="swt-statements" deleted="false" description="new Link" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.link" name="Link">${linkType:newType(org.eclipse.swt.widgets.Link)} ${link:newName(org.eclipse.swt.widgets.Link)}= new ${linkType}(${parent:var(org.eclipse.swt.widgets.Composite)}, SWT.NONE);
+${link}.setLayoutData(new ${type:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(BEGINNING, CENTER, END, FILL)}, SWT.${vertical:link(CENTER, TOP, BOTTOM, FILL)}, ${hex:link(false, true)}, ${vex:link(false, true)}));
+${link}.setText(${word_selection}${});
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new List" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.list" name="List">${type:newType(org.eclipse.swt.widgets.List)} ${list:newName(org.eclipse.swt.widgets.List)}= new ${type}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link('SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL', 'SWT.MULTI | SWT.V_SCROLL', SWT.MULTI, 'SWT.SINGLE | SWT.V_SCROLL | SWT.H_SCROLL', 'SWT.SINGLE | SWT.V_SCROLL', SWT.SINGLE)});
+${list}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(FILL, BEGINNING, CENTER, END)}, SWT.${vertical:link(FILL, TOP, CENTER, BOTTOM)}, ${hex:link(true, false)}, ${vex:link(true, false)}));
+${list}.setItems(${word_selection}${});
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="true" context="java" deleted="false" description="System.out.println" enabled="true" name="lll">System.out.println(${cursor});</template><template autoinsert="false" context="java-members" deleted="false" description="main method" enabled="true" id="org.eclipse.jdt.ui.templates.main" name="main">public static void main(String[] args) {
+	${cursor}
+}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new top level Shell with event loop" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.mainloop" name="mainloop">${displayType:newType(org.eclipse.swt.widgets.Display)} ${display:newName(org.eclipse.swt.widgets.Display)} = new ${displayType}();
+${shellType:newType(org.eclipse.swt.widgets.Shell)} ${shell:newName(org.eclipse.swt.widgets.Shell)} = new ${shellType}(${display});
+${shell}.setLayout(new ${layoutType:newType(org.eclipse.swt.layout.GridLayout)}(${numberColumns:link(1, 2, 3, 4, 5)}, ${equalColumns:link(false, true)}));
+
+${cursor}
+
+${shell}.pack();
+${shell}.open();
+while (!${shell}.isDisposed()) {
+	if (!${display}.readAndDispatch ()) 
+		${display}.sleep();
+}
+${display}.dispose();</template><template autoinsert="true" context="java" deleted="false" description="Matrix multiplication and power" enabled="true" name="matrix">/** Correct implementation of matrix multiplication, modulo &#13;
+* mod. The matrices are long[][] to avoid overflow in the&#13;
+* multiplication of A[i][k]*B[k][j] which is unavoidable&#13;
+* if ints are used.&#13;
+*/&#13;
+static int mod=1000000000;&#13;
+public static long[][] mul(long A[][], long B[][])&#13;
+	{&#13;
+	int N=A.length;				//A is a N*M matrix&#13;
+	int M=A[0].length;			//B is a M*K matrix&#13;
+	int K=B[0].length;	&#13;
+	long C[][]=new long[N][K];&#13;
+	for(int i=0;i&lt;N;i++)&#13;
+		{&#13;
+		for(int j=0;j&lt;K;j++)&#13;
+			{&#13;
+			for(int k=0;k&lt;M;k++)&#13;
+				C[i][j]=(C[i][j]+A[i][k]*B[k][j])%mod;&#13;
+			}&#13;
+		}&#13;
+	return C;&#13;
+	}&#13;
+public static long[][] pow(long A[][], long p)&#13;
+	{&#13;
+	if(p==1)&#13;
+		return A;&#13;
+	if(p%2!=0)&#13;
+		return mul(A,pow(A,p-1));&#13;
+	long temp[][]=pow(A,p/2);&#13;
+	return mul(temp,temp);&#13;
+	}</template><template autoinsert="true" context="java" deleted="false" description="1000000007" enabled="true" name="MOD">int mod=1000000007;</template><template autoinsert="true" context="java" deleted="false" description="2D table" enabled="true" name="ncr">/*&#13;
+ * Returns a 2D array which is capable of computing&#13;
+ * ncr of values n&lt;=N and r&lt;=R. Best method of using&#13;
+ * ncr in code, because usually the same ncr are computed &#13;
+ * again and again.&#13;
+ */&#13;
+private long[][] ncr(int N,int R)&#13;
+	{&#13;
+	int mod=1000000007;&#13;
+	long ncr[][]=new long[N+1][R+1];&#13;
+	for(int n=1;n&lt;=N;n++)&#13;
+		{&#13;
+		for(int r=0;r&lt;=n;r++)&#13;
+			{&#13;
+			if(r==0)&#13;
+				{&#13;
+				ncr[n][r]=1;&#13;
+				continue;&#13;
+				}&#13;
+			ncr[n][r]=ncr[n-1][r-1]+ncr[n-1][r];&#13;
+			ncr[n][r]%=mod;&#13;
+			}&#13;
+		}&#13;
+	return ncr;&#13;
+	}</template><template autoinsert="true" context="java" deleted="false" description="Combinations" enabled="true" name="ncr">public static long ncr(int n,int r)		//answer fits in long upto 60C30&#13;
+	{&#13;
+	if(r&gt;n/2)&#13;
+		return ncr(n,n-r);&#13;
+	if(r==0)&#13;
+		return 1;&#13;
+	return (n*ncr(n-1,r-1))/r;&#13;
+	}</template><template autoinsert="true" context="java" deleted="false" description="Combinations using BigIntegers" enabled="true" name="ncr">public static BigInteger ncrB(BigInteger n,BigInteger r)		//answer fits in long upto 60C30&#13;
+	{&#13;
+	BigInteger ONE=new BigInteger("1");&#13;
+	BigInteger ZERO=new BigInteger("0");&#13;
+	if(r.compareTo(n.shiftRight(1))==1)&#13;
+		return ncrB(n,n.subtract(r));&#13;
+	if(r.compareTo(ZERO)==0)&#13;
+		return ONE;&#13;
+	return (n.multiply(ncrB(n.subtract(ONE),r.subtract(ONE)))).divide(r);&#13;
+	}</template><template autoinsert="true" context="java" deleted="false" description="nearest_power_of_2" enabled="true" name="nearest_power_of_2">public static int nearest_pow_of_2(int i)&#13;
+	{&#13;
+	int ans=1;&#13;
+	while(ans&lt;i)&#13;
+		ans=ans*2;&#13;
+	return ans;&#13;
+	}</template><template autoinsert="false" context="java-statements" deleted="false" description="create new object" enabled="true" id="org.eclipse.jdt.ui.templates.new" name="new">${type} ${name} = new ${type}(${arguments});</template><template autoinsert="false" context="java" deleted="false" description="non-externalized string marker" enabled="true" id="org.eclipse.jdt.ui.templates.non-nls" name="nls">//$$NON-NLS-${N}$$</template><template autoinsert="true" context="java" deleted="false" description="strangely similar to point" enabled="true" name="node">class node implements Comparable&lt;node&gt;&#13;
+	{&#13;
+	int x;&#13;
+	int y;&#13;
+	public node(int x,int y)&#13;
+		{&#13;
+		this.x=x;&#13;
+		this.y=y;&#13;
+		}&#13;
+	public int compareTo(node o)&#13;
+		{&#13;
+		if(this.x&lt;o.x)&#13;
+			return -1;&#13;
+		else if(this.x==o.x&amp;&amp;this.y&lt;o.y)&#13;
+			return -1;&#13;
+		else if(this.x==o.x&amp;&amp;this.y==o.y)&#13;
+			return 0;&#13;
+		return 1;&#13;
+		}&#13;
+	}</template><template autoinsert="true" context="javadoc" deleted="false" description="&lt;code&gt;null&lt;/code&gt;" enabled="true" id="org.eclipse.jdt.ui.templates.code_tag_null" name="null">&lt;code&gt;null&lt;/code&gt;</template><template autoinsert="true" context="java" deleted="false" description="check if a string is a palindrome" enabled="true" name="palindrome">private boolean isPalindrome(String s)&#13;
+	{&#13;
+	String ss="";&#13;
+	for(int i=s.length()-1;i&gt;=0;i--)&#13;
+		ss=ss+s.charAt(i);&#13;
+	return ss.equals(s);&#13;
+	}</template><template autoinsert="true" context="java" deleted="false" description="Generates permutations of an array of integers. Takes care of repeated numbers." enabled="true" name="permutation generator">class permGen&#13;
+	{&#13;
+	public int A[];&#13;
+	public permGen(int a[])&#13;
+		{&#13;
+		A=new int[a.length];&#13;
+		for(int i=0;i&lt;a.length;i++)&#13;
+			A[i]=a[i];&#13;
+		}&#13;
+	public int[] nextPerm()&#13;
+		{&#13;
+		//Find the largest index k such that a[k] &lt; a[k + 1]. If no such index exists, the permutation is the last permutation.&#13;
+		int N=A.length;&#13;
+		int k=-1;&#13;
+		for(int i=0;i&lt;N-1;i++)&#13;
+			{&#13;
+			if(A[i]&lt;A[i+1])&#13;
+				k=i;&#13;
+			}&#13;
+		if(k==-1)&#13;
+			return null;&#13;
+		//Find the largest index l such that a[k] &lt; a[l]. Since k + 1 is such an index, l is well defined and satisfies k &lt; l&#13;
+		int l=-1;&#13;
+		for(int i=k+1;i&lt;N;i++)&#13;
+			{&#13;
+			if(A[k]&lt;A[i])&#13;
+				l=i;&#13;
+			}&#13;
+		//Swap a[k] with a[l].&#13;
+		swap(A,k,l);&#13;
+		&#13;
+		//Reverse the sequence from a[k + 1] up to and including the final element a[n]&#13;
+		int i=k+1;&#13;
+		int j=N-1;&#13;
+		while(i&lt;=j)&#13;
+			{&#13;
+			swap(A,i,j);&#13;
+			i++;&#13;
+			j--;&#13;
+			}&#13;
+		return A;&#13;
+		}&#13;
+	private void swap(int A[], int i, int j )&#13;
+		{&#13;
+		int t=A[i];&#13;
+		A[i]=A[j];&#13;
+		A[j]=t;&#13;
+		}&#13;
+	}&#13;
+</template><template autoinsert="true" context="java" deleted="false" description="class point for 2D points" enabled="true" name="point">&#13;
+class point implements Comparable&lt;point&gt;&#13;
+	{&#13;
+	int x;&#13;
+	int y;&#13;
+	public point(int x,int y)&#13;
+		{&#13;
+		this.x=x;&#13;
+		this.y=y;&#13;
+		}&#13;
+	&#13;
+	public boolean equals(point o)&#13;
+		{&#13;
+		if(this.x==o.x&amp;&amp;this.y==o.y)&#13;
+			return true;&#13;
+		return false;&#13;
+		}&#13;
+	public int compareTo(point o)&#13;
+		{&#13;
+		if(this.x&lt;o.x)&#13;
+			return -1;&#13;
+		else if(this.x==o.x&amp;&amp;this.y&lt;o.y)&#13;
+			return -1;&#13;
+		else if(this.x==o.x&amp;&amp;this.y==o.y)&#13;
+			return 0;&#13;
+		return 1;&#13;
+		}&#13;
+	&#13;
+	public boolean isOrthogonal(point a, point b, point c)&#13;
+		{&#13;
+		return (long)(b.x-a.x)*(b.x-c.x)+(long)(b.y-a.y)*(b.y - c.y)==0;&#13;
+		}&#13;
+	public boolean isRectangleOrdered(point a, point b, point c, point d)&#13;
+		{&#13;
+		return isOrthogonal(a,b,c) &amp;&amp;isOrthogonal(b,c,d) &amp;&amp;isOrthogonal(c,d,a);&#13;
+		}&#13;
+	public boolean isRectangle(point a, point b, point c, point d)&#13;
+		{&#13;
+		if(a.equals(b)||a.equals(c)||a.equals(d)||b.equals(c)||b.equals(d)||c.equals(d))	&#13;
+			return false;&#13;
+		&#13;
+		return isRectangleOrdered(a,b,c,d)||isRectangleOrdered(b,c,a,d)||isRectangleOrdered(c,a,b,d);&#13;
+		}&#13;
+	}&#13;
+//must declare new classes here</template><template autoinsert="true" context="java" deleted="false" description="cross product: component in K direction" enabled="true" name="point">/*&#13;
+* returns the cross product of 2 vectors v1 and v2 represented as points.&#13;
+* v1 is v1.x*i+v1.y*j&#13;
+*/&#13;
+private static int cross(point v1,point v2)&#13;
+	{&#13;
+	return v1.x*v2.y-v1.y*v2.x;&#13;
+	}</template><template autoinsert="true" context="java" deleted="false" description="compute a^b" enabled="true" name="power">private static int pow(int a, int b)&#13;
+		{&#13;
+		int ans=1;&#13;
+		while(b&gt;0)&#13;
+			{&#13;
+			ans=ans*a;&#13;
+			b--;&#13;
+			}&#13;
+		return ans;&#13;
+		}</template><template autoinsert="true" context="java" deleted="false" description="is num a power of pow?" enabled="true" name="power">/*&#13;
+ * Returns true if 'num' is a power of 'pow'&#13;
+ */&#13;
+private boolean isPower(long num, long pow)&#13;
+	{&#13;
+	if(num==0)&#13;
+		return false;&#13;
+	if(num==1||num==pow)&#13;
+		return true;&#13;
+	while(num&gt;1)&#13;
+		{&#13;
+		if(num%pow!=0)&#13;
+			return false;&#13;
+		num=num/pow;&#13;
+		}&#13;
+	return true;&#13;
+	}</template><template autoinsert="true" context="java" deleted="false" description="factorization rig" enabled="true" name="prime">/*&#13;
+ * Implements a function which returns the prime factorization of a number &#13;
+ * X&lt;=N in log(X) time. This is done by creating a sieve to store the smallest&#13;
+ * prime factor of every number. &#13;
+ */&#13;
+class factorRig&#13;
+	{&#13;
+	boolean prime[];		//prime[i] is false if i is prime&#13;
+	int spf[];				//spf[i] is the smallest prime factor of i&#13;
+	public factorRig(int N)&#13;
+		{&#13;
+		prime=new boolean[N+3];&#13;
+		spf=new int[N+3];&#13;
+		for(int i=2;i&lt;=N;i++)&#13;
+			{&#13;
+			if(!prime[i])&#13;
+				{&#13;
+				spf[i]=i;&#13;
+				int initial=2*i;&#13;
+				while(initial&lt;=N)&#13;
+					{&#13;
+					if(spf[initial]==0)&#13;
+						spf[initial]=i;&#13;
+					prime[initial]=true;&#13;
+					initial+=i;&#13;
+					}&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	public List&lt;Integer&gt; primeFactorization(int N)&#13;
+		{&#13;
+		List&lt;Integer&gt; ans=new LinkedList&lt;Integer&gt;();&#13;
+		while(spf[N]!=0)&#13;
+			{&#13;
+			ans.add(spf[N]);&#13;
+			N=N/spf[N];&#13;
+			}&#13;
+		return ans;&#13;
+		}&#13;
+	}</template><template autoinsert="true" context="java" deleted="false" description="primality test for integers" enabled="true" name="prime">public static boolean isPrime(int n)&#13;
+	{&#13;
+	if(n==2||n==3||n==5)&#13;
+		return true;&#13;
+	if(n%2==0||n&lt;=1)&#13;
+		return false;&#13;
+	int temp=(int)Math.sqrt(n)+3;&#13;
+	for(int i=3;i&lt;=temp;i+=2)&#13;
+		if(n%i==0)&#13;
+			return false;&#13;
+	return true;&#13;
+	}</template><template autoinsert="true" context="java" deleted="false" description="prime factorization length of a long in O(sqrt(N))" enabled="true" name="prime factorization length">public static int primeL(long N)&#13;
+		{&#13;
+		int len=0;&#13;
+		for(long i=2;i*i&lt;=N;i++)&#13;
+			{&#13;
+			while(N%i==0)&#13;
+				{&#13;
+				N=N/i;&#13;
+				len++;&#13;
+				}&#13;
+			}&#13;
+		if(N&gt;1)					//a residue prime number&#13;
+			len++;&#13;
+		return len;&#13;
+		}</template><template autoinsert="true" context="java" deleted="false" description="Smallest number with K prime factors" enabled="true" name="primes">		/*&#13;
+		 *1		2					MAX_FACTORS=0&#13;
+		 *2		6					MAX_FACTORS=2&#13;
+		 *3		30					MAX_FACTORS=4&#13;
+		 *4		210					MAX_FACTORS=8&#13;
+		 *5		2310				MAX_FACTORS=16&#13;
+		 *6		30030				MAX_FACTORS=32&#13;
+		 *7		510510				MAX_FACTORS=64&#13;
+		 *8		9699690				MAX_FACTORS=128&#13;
+		 *9		223092870&#13;
+		 *10	6469693230&#13;
+		 *11	200560490130&#13;
+		 *12	7420738134810&#13;
+		*/</template><template autoinsert="true" context="java" deleted="false" description="All prime factors array" enabled="true" name="primes: all primes">public static int[] all_primes(long N)&#13;
+		{&#13;
+		int len=0;&#13;
+		long temp=N;&#13;
+		for(long i=2;i*i&lt;=N;i++)&#13;
+			{&#13;
+			while(N%i==0)&#13;
+				{&#13;
+				len++;&#13;
+				N=N/i;&#13;
+				}&#13;
+			}&#13;
+		if(N&gt;1)					//a residue prime number&#13;
+			len++;				//code till here finds the number of distinct prime factors &#13;
+		N=temp;&#13;
+		int A[]=new int[len];&#13;
+		int index=0;&#13;
+		for(long i=2;i*i&lt;=N;i++)&#13;
+			{&#13;
+			while(N%i==0)&#13;
+				{&#13;
+				A[index]=(int)i;&#13;
+				index++;&#13;
+				N=N/i;&#13;
+				len++;&#13;
+				}&#13;
+			}&#13;
+		if(N&gt;1)&#13;
+			A[index]=(int)N;&#13;
+		return A;&#13;
+		}</template><template autoinsert="false" context="java-members" deleted="false" description="private method" enabled="true" id="org.eclipse.jdt.ui.templates.private_method" name="private_method">private ${return_type} ${name}(${}) {
+	${cursor}
+}</template><template autoinsert="false" context="java-members" deleted="false" description="private static method" enabled="true" id="org.eclipse.jdt.ui.templates.private_static_method" name="private_static_method">private static ${return_type} ${name}(${}) {
+	${cursor}
+}</template><template autoinsert="false" context="java-members" deleted="false" description="protected method" enabled="true" id="org.eclipse.jdt.ui.templates.protected_method" name="protected_method">protected ${return_type} ${name}(${}) {
+	${cursor}
+}</template><template autoinsert="false" context="java-members" deleted="false" description="public method" enabled="true" id="org.eclipse.jdt.ui.templates.public_method" name="public_method">public ${return_type} ${name}(${}) {
+	${cursor}
+}</template><template autoinsert="true" context="java" deleted="false" description="generates all numbers (&lt;=N) which are sum of squares of 2 integers" enabled="true" name="pythagoras">/*&#13;
+	 * A[i] is true iff there are a and b such that&#13;
+	 * a*a+b*b=i. &#13;
+	 */&#13;
+	private static boolean[] pytha(int N)&#13;
+		{&#13;
+		boolean A[]=new boolean[N];&#13;
+		int upp=(int)Math.sqrt(N)+1;&#13;
+		Arrays.fill(A,false);&#13;
+		for(int i=1;i&lt;=upp;i++) &#13;
+			{&#13;
+			for(int j=1;j&lt;=upp;j++) &#13;
+				{&#13;
+				int diag=i*i+j*j;&#13;
+				if(diag&lt;N)&#13;
+					A[diag]=true;&#13;
+				}&#13;
+			}&#13;
+		return A;&#13;
+		}</template><template autoinsert="true" context="java" deleted="false" description="Widely used in grid traversal" enabled="true" name="queue">if(head.i+di[k]&gt;=0&amp;&amp;head.i+di[k]&lt;${argType}&amp;&amp;head.j+dj[k]&gt;=0&amp;&amp;head.j+dj[k]&lt;${argType})</template><template autoinsert="true" context="java" deleted="false" description="reverse an array" enabled="true" name="reverse">/*In place reversal of an integer array*/&#13;
+private static void reverse(int A[])&#13;
+	{&#13;
+	int N=A.length;&#13;
+	for(int i=0;i&lt;N/2;i++)&#13;
+		{&#13;
+		int temp=A[i];&#13;
+		A[i]=A[N-i-1];&#13;
+		A[N-i-1]=temp;&#13;
+		}&#13;
+	}</template><template autoinsert="true" context="java" deleted="false" description="reverse the decimal representation of an integer/long, leading 0's will be omitted from the new representation" enabled="true" name="reverse">private static ${argType} reverse(${argType} b)&#13;
+	{&#13;
+	${argType} ans=0;&#13;
+	while(b!=0)&#13;
+		{&#13;
+		ans=ans*10+b%10;&#13;
+		b=b/10;&#13;
+		}&#13;
+	return ans;&#13;
+	}</template><template autoinsert="true" context="java" deleted="false" description="random integer" enabled="true" name="rrr">(int)(Math.random()*100000)%${cursor}</template><template autoinsert="false" context="java" deleted="false" description="runnable" enabled="true" id="org.eclipse.jdt.ui.templates.runnable" name="runnable">new Runnable() {
+	public void run() {
+		${line_selection}
+	}
+}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new SashForm" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.sashform" name="SashForm">${type:newType(org.eclipse.swt.custom.SashForm)} ${sash:newName(org.eclipse.swt.custom.SashForm)}= new ${type}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link(SWT.HORIZONTAL, SWT.VERTICAL)});
+${sash}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(FILL, BEGINNING, CENTER, END)}, SWT.${vertical:link(FILL, TOP, CENTER, BOTTOM)}, ${hex:link(true, false)}, ${vex:link(true, false)}));
+${imp:import(org.eclipse.swt.SWT)}${cursor}
+
+${sash}.setWeights(new int[] {1, 1});</template><template autoinsert="false" context="swt-statements" deleted="false" description="new Scale" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.scale" name="Scale">${scaleType:newType(org.eclipse.swt.widgets.Scale)} ${scale:newName(org.eclipse.swt.widgets.Scale)}= new ${scaleType}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link(SWT.HORIZONTAL, SWT.VERTICAL)});
+${scale}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(BEGINNING, FILL, CENTER, END)}, SWT.${vertical:link(CENTER, TOP, BOTTOM, FILL)}, ${hex:link(false, true)}, ${vex:link(false, true)}));
+${scale}.setMaximum(${max:link(100)});
+${scale}.setIncrement(${inc:link(5)});
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new ScrolledComposite" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.scrolledcomposite" name="ScrolledComposite">${compositeType:newType(org.eclipse.swt.custom.ScrolledComposite)} ${scrolled:newName(org.eclipse.swt.custom.ScrolledComposite)} = new ${compositeType}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link('SWT.H_SCROLL | SWT.V_SCROLL', SWT.H_SCROLL, SWT.V_SCROLL)});
+${scrolled}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(FILL, BEGINNING, CENTER, END)}, SWT.${vertical:link(FILL, TOP, CENTER, BOTTOM)}, ${hex:link(true, false)}, ${vex:link(true, false)}));
+${scrolled}.setExpandVertical(${exV:link(false, true)});
+${scrolled}.setExpandHorizontal(${exH:link(false, true)});
+${imp:import(org.eclipse.swt.SWT)}${cursor}
+
+${scrolled}.setContent(${content});
+Point ${contentSize:newName(org.eclipse.swt.graphics.Point)} = ${content}.computeSize(SWT.DEFAULT, SWT.DEFAULT);
+${content}.setSize(${contentSize});
+${scrolled}.setMinSize(${contentSize});</template><template autoinsert="false" context="swt-statements" deleted="false" description="new Shell" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.shell" name="Shell">${shellType:newType(org.eclipse.swt.widgets.Shell)} ${shell:newName(org.eclipse.swt.widgets.Shell)} = new ${shellType}(${parent:var(org.eclipse.swt.widgets.Shell)}, ${style:link('SWT.DIALOG_TRIM | SWT.PRIMARY_MODAL', 'SWT.DIALOG_TRIM | SWT.MODELESS', 'SWT.SHELL_TRIM | SWT.MODELESS', 'SWT.SHELL_TRIM | SWT.PRIMARY_MODAL')});
+${shell}.setLayout(new ${layoutType:newType(org.eclipse.swt.layout.GridLayout)}(${numberColumns:link(1, 2, 3, 4, 5)}, ${equalColumns:link(false, true)}));
+
+${imp:import(org.eclipse.swt.SWT)}${cursor}
+
+${shell}.pack();
+${shell}.open();</template><template autoinsert="false" context="swt-statements" deleted="false" description="new Spinner" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.spinner" name="Spinner">${spinnerType:newType(org.eclipse.swt.widgets.Spinner)} ${spinner:newName(org.eclipse.swt.widgets.Spinner)}= new ${spinnerType}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link(SWT.BORDER, 'SWT.WRAP | SWT.BORDER', 'SWT.READ_ONLY | SWT.BORDER', 'SWT.READ_ONLY | SWT.WRAP | SWT.BORDER', SWT.WRAP, SWT.READ_ONLY)});
+${spinner}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(BEGINNING, CENTER, END, FILL)}, SWT.${vertical:link(CENTER, TOP, BOTTOM, FILL)}, ${hex:link(false, true)}, ${vex:link(false, true)}));
+${spinner}.setMaximum(${max:link(10)});
+${spinner}.setIncrement(${inc:link(1)});
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="false" context="java-members" deleted="false" description="static final field" enabled="true" id="org.eclipse.jdt.ui.templates.static_final" name="static_final">${visibility:link(public,protected,private)} static final ${type:link(String,int)} ${NAME};</template><template autoinsert="false" context="swt-statements" deleted="false" description="new StyledText " enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.styledtext" name="StyledText">${type:newType(org.eclipse.swt.custom.StyledText)} ${text:newName(org.eclipse.swt.custom.StyledText)}= new ${type}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link('SWT.V_SCROLL | SWT.H_SCROLL', 'SWT.V_SCROLL | SWT.H_SCROLL | SWT.READ_ONLY', 'SWT.WRAP | SWT.V_SCROLL', SWT.NONE, SWT.BORDER, SWT.FULL_SELECTION)});
+${text}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(FILL, BEGINNING, CENTER, END)}, SWT.${vertical:link(FILL, TOP, CENTER, BOTTOM)}, ${hex:link(true, false)}, ${vex:link(true, false)}));
+${text}.setText(${word_selection}${});
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new StyleRange for a StyledText" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.stylerange" name="StyleRange">${type:newType(org.eclipse.swt.custom.StyleRange)} ${range:newName(org.eclipse.swt.custom.StyleRange)}= new ${type}();
+${range}.start= ${start:link(0)};
+${range}.length= ${length:link(0)};
+${range}.foreground= ${fColor:link(null, 'Display.getDefault().getSystemColor(SWT.COLOR_BLACK)', 'Display.getDefault().getSystemColor(SWT.COLOR_WHITE)', 'Display.getDefault().getSystemColor(SWT.COLOR_RED)', 'Display.getDefault().getSystemColor(SWT.COLOR_BLUE)', 'Display.getDefault().getSystemColor(SWT.COLOR_GREEN)')};
+${range}.background= ${bColor:link(null, 'Display.getDefault().getSystemColor(SWT.COLOR_BLACK)', 'Display.getDefault().getSystemColor(SWT.COLOR_WHITE)', 'Display.getDefault().getSystemColor(SWT.COLOR_RED)', 'Display.getDefault().getSystemColor(SWT.COLOR_BLUE)', 'Display.getDefault().getSystemColor(SWT.COLOR_GREEN)')};
+${range}.fontStyle= ${fStyle:link(SWT.NORMAL, SWT.ITALIC, SWT.BOLD)};
+${text:var(org.eclipse.swt.custom.StyledText)}.setStyleRange(${range});
+${imp:import(org.eclipse.swt.SWT, org.eclipse.swt.widgets.Display)}${cursor}</template><template autoinsert="true" context="java" deleted="false" description="" enabled="true" name="summed area tables">/*&#13;
+ * Anuj's implementation of summed area tables&#13;
+ * Initialize using a 2D array, and enjoy rectangle sums&#13;
+ * by using inidices w.r.t. the initial array.&#13;
+ */&#13;
+class SAT&#13;
+	{&#13;
+	public static int sums[][];&#13;
+	public SAT(int A[][])&#13;
+		{&#13;
+		int N=A.length;&#13;
+		int M=A[0].length;&#13;
+		sums=new int[N+1][M+1];&#13;
+		for(int i=1;i&lt;=N;i++) &#13;
+			{&#13;
+			for(int j=1;j&lt;=M;j++)&#13;
+				sums[i][j]=A[i-1][j-1]+sums[i][j-1]+sums[i-1][j]-sums[i-1][j-1];&#13;
+			}&#13;
+		}&#13;
+	public int squareSum(int i1,int j1,int i2,int j2)&#13;
+		{&#13;
+		return sums[i2+1][j2+1]-sums[i2+1][j1]-sums[i1][j2+1]+sums[i1][j1];&#13;
+		}&#13;
+	}</template><template autoinsert="true" context="java" deleted="false" description="swap 2 indices in an array" enabled="true" name="swap">private void swap(${argType}[] A,int loc1,int lo)&#13;
+	{&#13;
+	${argType} temp=A[loc1];&#13;
+	A[loc1]=A[lo];&#13;
+	A[lo]=temp;	&#13;
+	}</template><template autoinsert="false" context="java-statements" deleted="false" description="switch case statement" enabled="true" id="org.eclipse.jdt.ui.templates.switch" name="switch">switch (${key}) {
+	case ${value}:
+		${cursor}
+		break;
+
+	default:
+		break;
+}</template><template autoinsert="false" context="java-statements" deleted="false" description="synchronized block" enabled="true" id="org.eclipse.jdt.ui.templates.synchronized" name="synchronized">synchronized (${mutex:var}) {
+	${line_selection}
+}</template><template autoinsert="true" context="java-statements" deleted="false" description="print to standard error" enabled="true" id="org.eclipse.jdt.ui.templates.syserr" name="syserr">System.err.println(${word_selection}${});${cursor}</template><template autoinsert="true" context="java-statements" deleted="false" description="print to standard out" enabled="true" id="org.eclipse.jdt.ui.templates.sysout" name="sysout">System.out.println(${word_selection}${});${cursor}</template><template autoinsert="true" context="java-statements" deleted="false" description="print current method to standard out" enabled="true" id="org.eclipse.jdt.ui.templates.systrace" name="systrace">System.out.println("${enclosing_type}.${enclosing_method}()");</template><template autoinsert="false" context="swt-statements" deleted="false" description="new TabFolder" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.tabfolder" name="TabFolder">${type:newType(org.eclipse.swt.widgets.TabFolder)} ${folder:newName(org.eclipse.swt.widgets.TabFolder)}= new ${type}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link(SWT.TOP, SWT.BOTTOM)});
+${folder}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(FILL, BEGINNING, CENTER, END)}, SWT.${vertical:link(FILL, TOP, CENTER, BOTTOM)}, ${hex:link(true, false)}, ${vex:link(true, false)}));
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new TabItem for a TabFolder" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.tabitem" name="TabItem">${type:newType(org.eclipse.swt.widgets.TabItem)} ${item:newName(org.eclipse.swt.widgets.TabItem)}= new ${type}(${parent:var(org.eclipse.swt.widgets.TabFolder)}, SWT.NONE);
+${item}.setText(${word_selection}${});
+${imp:import(org.eclipse.swt.SWT)}${cursor}
+
+${item}.setControl(${control});</template><template autoinsert="false" context="swt-statements" deleted="false" description="new Table" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.table" name="Table">${type:newType(org.eclipse.swt.widgets.Table)} ${table:newName(org.eclipse.swt.widgets.Table)}= new ${type}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link('SWT.SINGLE | SWT.FULL_SELECTION', 'SWT.MULTI | SWT.FULL_SELECTION', SWT.CHECK, SWT.NONE, SWT.VIRTUAL)});
+${table}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(FILL, BEGINNING, CENTER, END)}, SWT.${vertical:link(FILL, TOP, CENTER, BOTTOM)}, ${hex:link(true, false)}, ${vex:link(true, false)}));
+${table}.setLinesVisible(${line:link(true, false)});
+${table}.setHeaderVisible(${header:link(true, false)});
+${imp:import(org.eclipse.swt.SWT)}${cursor}
+
+for (int ${index} = 0; ${index} &lt; ${table}.getColumnCount(); ${index}++) {
+	${table}.getColumn(${index}).pack();
+}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new TableColumn for a Table " enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.tablecolumn" name="TableColumn">${type:newType(org.eclipse.swt.widgets.TableColumn)} ${column:newName(org.eclipse.swt.widgets.TableColumn)}= new ${type}(${parent:var(org.eclipse.swt.widgets.Table)}, ${style:link(SWT.LEAD, SWT.CENTER, SWT.TRAIL)});
+${column}.setText(${word_selection}${});
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new TableItem for a Table" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.tableitem" name="TableItem">${type:newType(org.eclipse.swt.widgets.TableItem)} ${item:newName(org.eclipse.swt.widgets.TableItem)}= new ${type}(${parent:var(org.eclipse.swt.widgets.Table)}, SWT.NONE);
+${item}.setText(${count:link(0, 1, 2, 3, 4, 5)}, ${word_selection}${});
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="false" context="java-members" deleted="false" description="test method" enabled="true" id="org.eclipse.jdt.ui.templates.test" name="test">public void test${name}() throws Exception {
+	${cursor} 
+}</template><template autoinsert="false" context="java-members" deleted="false" description="test method (JUnit 4)" enabled="true" id="org.eclipse.jdt.ui.templates.test_junit4" name="Test">@${testType:newType(org.junit.Test)}
+public void ${testName}() throws Exception {
+	${staticImport:importStatic('org.junit.Assert.*')}${cursor} 
+}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new Text" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.text" name="Text">${type:newType(org.eclipse.swt.widgets.Text)} ${text:newName(org.eclipse.swt.widgets.Text)}= new ${type}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link('SWT.SINGLE | SWT.LEAD | SWT.BORDER', 'SWT.SINGLE | SWT.LEAD | SWT.READ_ONLY | SWT.BORDER', 'SWT.SINGLE | SWT.LEAD | SWT.PASSWORD | SWT.BORDER', 'SWT.MULTI | SWT.WRAP | SWT.V_SCROLL | SWT.BORDER', 'SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER')});
+${text}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(FILL, BEGINNING, CENTER, END)}, SWT.${vertical:link(CENTER, TOP, BOTTOM, FILL)}, ${hex:link(true, false)}, ${vex:link(false, true)}));
+${text}.setText(${word_selection}${});
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="false" context="java" deleted="false" description="convert collection to array" enabled="true" id="org.eclipse.jdt.ui.templates.toarray" name="toarray">(${type:elemType(collection)}[]) ${collection}.toArray(new ${type}[${collection}.size()])</template><template autoinsert="false" context="swt-statements" deleted="false" description="new ToolBar" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.toolbar" name="ToolBar">${type:newType(org.eclipse.swt.widgets.ToolBar)} ${bar:newName(org.eclipse.swt.widgets.ToolBar)}= new ${type}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link(SWT.FLAT, SWT.WRAP, SWT.RIGHT, SWT.HORIZONTAL, SWT.VERTICAL, SWT.SHADOW_OUT)});
+${bar}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(FILL, BEGINNING, CENTER, END)}, SWT.${vertical:link(FILL, TOP, CENTER, BOTTOM)}, ${hex:link(true, false)}, ${vex:link(true, false)}));
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new ToolItem for a ToolBar" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.toolitem" name="ToolItem">${type:newType(org.eclipse.swt.widgets.ToolItem)} ${item:newName(org.eclipse.swt.widgets.ToolItem)}= new ${type}(${parent:var(org.eclipse.swt.widgets.ToolBar)}, ${style:link(SWT.PUSH, SWT.CHECK, SWT.RADIO, SWT.SEPARATOR, SWT.DROP_DOWN)});
+${item}.setText(${word_selection}${});
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="true" context="java" deleted="false" description="a simple N^3 algorithm requiring only a before[][] array" enabled="true" name="topological sort">/* This function returns the lexicographically smallest topological &#13;
+ * ordering of a directed graph given as before[][] where before[i][j]&#13;
+ * is true iff i must come before j in the ordering.&#13;
+ * &#13;
+ * Time complexity is O(N^3).&#13;
+ */&#13;
+private static String topologicalOrder(boolean[][] before)&#13;
+	{&#13;
+	String ans="";&#13;
+	int N=before.length;&#13;
+	TreeSet&lt;Integer&gt; All=new TreeSet&lt;Integer&gt;();	//The set of all available nodes &#13;
+	for(int i=0;i&lt;N;i++)&#13;
+		All.add(i);&#13;
+	for(int iter=0;iter&lt;N;iter++)					//We must do N iterations&#13;
+		{&#13;
+		TreeSet&lt;Integer&gt; T=new TreeSet&lt;Integer&gt;();	//Build a new set of available nodes&#13;
+		for(int a: All)&#13;
+			T.add(a);&#13;
+		for(int i=0;i&lt;N;i++)						//Remove all nodes which have &gt;=1 incoming edges&#13;
+			{&#13;
+			for(int j=0;j&lt;N;j++)&#13;
+				{	&#13;
+				if(before[i][j])&#13;
+					T.remove(j);			&#13;
+				}&#13;
+			}&#13;
+		if(T.isEmpty())								//If no such node exists, then we have a problem&#13;
+			return "ERROR!";&#13;
+		int min=T.first();							//Get the lexicographically smallest valid node				&#13;
+		All.remove(min);							//Remove this from the set of available nodes&#13;
+		ans+=min;									//And append it to the answer.&#13;
+		for(int j=0;j&lt;N;j++)						//Remove the dependency on this node&#13;
+			before[min][j]=false;&#13;
+		}&#13;
+	return ans;&#13;
+	}</template><template autoinsert="true" context="java" deleted="false" description="fetch 2 space separated integers " enabled="true" name="tow ints">String S[]=c.readLine().split(" ");&#13;
+int N=Integer.parseInt(S[0]);&#13;
+int M=Integer.parseInt(S[1]);</template><template autoinsert="false" context="swt-statements" deleted="false" description="new Tree" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.tree" name="Tree">${type:newType(org.eclipse.swt.widgets.Tree)} ${tree:newName(org.eclipse.swt.widgets.Tree)}= new ${type}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link('SWT.SINGLE | SWT.FULL_SELECTION', 'SWT.MULTI | SWT.FULL_SELECTION', SWT.CHECK, SWT.NONE, SWT.VIRTUAL)});
+${tree}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(FILL, BEGINNING, CENTER, END)}, SWT.${vertical:link(FILL, TOP, CENTER, BOTTOM)}, ${hex:link(true, false)}, ${vex:link(true, false)}));
+${tree}.setLinesVisible(${line:link(true, false)});
+${tree}.setHeaderVisible(${header:link(true, false)});
+${imp:import(org.eclipse.swt.SWT)}${cursor}
+
+for (int ${index} = 0; ${index} &lt; ${tree}.getColumnCount(); ${index}++) {
+	${tree}.getColumn(${index}).pack();
+}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new TreeColumn for a Tree " enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.treecolumn" name="TreeColumn">${type:newType(org.eclipse.swt.widgets.TreeColumn)} ${column:newName(org.eclipse.swt.widgets.TreeColumn)}= new ${type}(${parent:var(org.eclipse.swt.widgets.Tree)}, ${style:link(SWT.LEAD, SWT.CENTER, SWT.TRAIL)});
+${column}.setText(${word_selection}${});
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new TreeItem for a Tree" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.treeitem" name="TreeItem">${type:newType(org.eclipse.swt.widgets.TreeItem)} ${item:newName(org.eclipse.swt.widgets.TreeItem)}= new ${type}(${parent:var(org.eclipse.swt.widgets.Tree, org.eclipse.swt.widgets.TreeItem)}, SWT.NONE);
+${item}.setText(${count:link(0, 1, 2, 3, 4, 5)}, ${word_selection}${});
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="true" context="javadoc" deleted="false" description="&lt;code&gt;true&lt;/code&gt;" enabled="true" id="org.eclipse.jdt.ui.templates.code_tag_true" name="true">&lt;code&gt;true&lt;/code&gt;</template><template autoinsert="false" context="java-statements" deleted="false" description="try catch block" enabled="true" id="org.eclipse.jdt.ui.templates.try" name="try">try {
+	${line_selection}${cursor}
+} catch (${Exception} ${exception_variable_name}) {
+	// ${todo}: handle exception
+}</template><template autoinsert="true" context="java" deleted="false" description="fetch 2 space separated integers " enabled="true" name="two ints">String S[]=c.readLine().split(" ");&#13;
+int N=Integer.parseInt(S[0]);&#13;
+int M=Integer.parseInt(S[1]);</template><template autoinsert="true" context="java" deleted="false" description="A union-find data structure on n nodes" enabled="true" name="uniom-find">/*&#13;
+ * A good union find implementation. Nodes are numbered 0 through n-1.&#13;
+ * Initially every node is its own parent i.e. par[i]=i;&#13;
+ */&#13;
+class unionFind&#13;
+	{&#13;
+	public static int par[];								//parent array for vertices&#13;
+	public unionFind(int n)&#13;
+		{&#13;
+		par=new int[n];&#13;
+		for(int i=0;i&lt;n;i++) &#13;
+			{&#13;
+			par[i]=i;&#13;
+			}&#13;
+		}&#13;
+	public static int root(int a)							//to find the root of a node&#13;
+		{&#13;
+		if(par[a]==a)										//the node is the root&#13;
+			return a;&#13;
+		par[a]=root(par[a]);								//find the root of the parent and path-compress&#13;
+		return par[a];&#13;
+&#13;
+		}&#13;
+	public static boolean merge(int a,int b)&#13;
+		{&#13;
+		int A=root(a);&#13;
+		int B=root(b); &#13;
+		if(A==B)&#13;
+			return false;									//merge returns false if they are in the same tree&#13;
+		if(((int)(Math.random()*10000)&amp;1)==1)				//else, assign parent of a=root of b randomly&#13;
+			par[B]=a;&#13;
+		else&#13;
+			par[A]=b;&#13;
+		return true;&#13;
+		}&#13;
+&#13;
+	}&#13;
+</template><template autoinsert="true" context="java" deleted="false" description="Simple UVa template" enabled="true" name="UVa">import java.util.*;&#13;
+import java.math.*;&#13;
+import java.io.*;&#13;
+&#13;
+public class SoftwareAllocation&#13;
+	{&#13;
+	public static void main(String args[]) throws FileNotFoundException&#13;
+		{&#13;
+		Scanner c=new Scanner(new File("in.txt"));&#13;
+		}&#13;
+	}&#13;
+&#13;
+//must declare new classes here</template><template autoinsert="true" context="java" deleted="false" description="UVa simple template" enabled="true" name="UVa">import java.util.*;&#13;
+import java.math.*;&#13;
+import java.io.*;&#13;
+&#13;
+class SoftwareAllocation&#13;
+	{&#13;
+	public static void main(String args[]) throws FileNotFoundException&#13;
+		{&#13;
+		Scanner c = new Scanner(new File("C:/Users/DELL/Desktop/eclipse/in.txt"));&#13;
+		while(c.hasNext())						//for every new case&#13;
+			{&#13;
+			//declare things for the new test case here&#13;
+			while(c.hasNext())&#13;
+				{&#13;
+				String s=c.nextLine();&#13;
+				if(s.compareTo("")==0)			//end of this case: compute max flow&#13;
+					break;&#13;
+				else&#13;
+					{&#13;
+					//do thinngs for this test case now&#13;
+					}&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+&#13;
+//must declare new classes here</template><template autoinsert="false" context="java-statements" deleted="false" description="iterate with enumeration" enabled="true" id="org.eclipse.jdt.ui.templates.while_enumeration" name="while">while (${en:var(java.util.Enumeration)}.hasMoreElements()) {
+	${type:argType(en)} ${elem:newName(type)} = (${type}) ${en}.nextElement();
+	${cursor}
+}</template><template autoinsert="false" context="java-statements" deleted="false" description="iterate with iterator" enabled="true" id="org.eclipse.jdt.ui.templates.while_iterator" name="while">while (${it:var(java.util.Iterator)}.hasNext()) {
+	${type:argType(it)} ${elem:newName(type)} = (${type}) ${it}.next();
+	${cursor}
+}</template><template autoinsert="false" context="java-statements" deleted="false" description="while loop with condition" enabled="true" id="org.eclipse.jdt.ui.templates.while_condition" name="while">while (${condition:var(boolean)}) {
+	${line_selection}${cursor}
+}</template><template autoinsert="true" context="java" deleted="false" description="System.out.println();" enabled="true" name="yyy">System.out.println(${cursor});</template></templates>
