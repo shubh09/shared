@@ -1,0 +1,182 @@
+Whenever dividing by some quantity, check that it isn't zero.
+Checking collinearity of 3 points (say (x1,y1),(x2,y2),(x3,y3) - instead of checking slopes (which involves dividing), check cross product (which, even though it amounts to the same condition as with checking the slope, but without division, so that checking zeroness of the denominator can be avoided).
+C++ happens to have a built in pow() function, which can be used to calculate any floating point power of any number.
+Equality of floating point numbers works in C++, even though it is discouraged.
+Every recursive function must have a termination condition.
+Take care of variables inside a FOR loop.
+Be confident of your algorithm before starting coding.
+Distance Arrays (SRM406 - Div2-250 problem, SRM407 - Div2-250 problem)
+When coding an outside algo (not thought out by you) be sure to have a full grasp over it before you start coding.
+Memoize in dp-like solutions.
+commond difference in an ap
+ll and int.
+ceil c++ returns double
+Shifting an array by, say, 1 unit - the order in which elements are rearranged - imp!!
+Read the question carefully. x4
+Finding prime factors of a number.
+The XOR swap.
+2 to the power a = 1<<a
+in codechef - avoid using cout EVER. even when outputting c++ strings, convert it into char array using c_str, then use scanf. (problem BEX)
+
+
+binary search - c++ built-in functions - upper_bound,lower_bound
+C++ - When vector is passed as a parameter to some function, a copy of vector is actually created. It may take a lot of time and memory to create new vectors when they are not really needed.
+	hence instead of 
+		void some_function(vector <int> v)
+		{
+			...
+		}
+	use
+		void some_function(vector <int> &v)	//changes made to the vector v inside this function actually take place to the original vector too
+		{
+			...
+		}
+		
+Same holds for strings as well
+
+C++ sets - performing operations like adding element, removing element, and checking the presence of an element in O(log n)
+only way to traverse the elements of a set - through iterators
+C++ nested constructions:
+	vector< vector<int> > v; //correct
+	vector<vector<int>> v;   //wrong
+
+Vectors:
+* size() - unsigned int - may sometimes cause problems
+* not a good practice to use size to check emptiness of a container
+* vector<int> v[10]; //also a valid declaration, but discouraged; declaration of an array of vectors
+* vector<int> v(10); //also valid
+Data manipulation
+* v.insert(1,42); 	//insert value 42 after the first
+* v.insert(1,all(v2)); //insert the entire vector v2 after position 1; note that here all is a macro
+* erase(iterator);
+* erase(begin iterator, end iterator);
+* lexicographic comparison - <,>,<=,>=,=,!=
+
+
+Pairs:
+* The great advantage - built-in operations to compare themselves
+* Sample problem - arrange the given set of integer points in 2-D space so that they form a polygon
+
+Templates- way to declare functions which work on any appropriate parameter types
+
+Iterators: objects associated with containers supporting operations like take value (unary *), comparison (<), and increment/decrement (++/--)
+Defined operations (it, it1 and it2 are iterators)
+* int x=*it	//get value
+* it1++;it2--;//increment and decrement 
+* comparison by '!=' and '<'
+* it+=20; //shifting 20 elements forward
+* int n=it2-it1	//getting the distance between the iterators
+* 2 types - normal iterators, and random access iterators
+STL:
+* begin - points to the first valid object
+* end - points to the first invalid object
+* c.begin()==c.end() iff c is empty
+* c.end()-c.begin()=c.size()	//valid if the iterators can be subtracted
+* Example - vector declaration using an array - vector<int> arr(data,data+(sizeof(data)/sizeof(data[0]))) //any object with enough functionality can be passed as an iterator to STL algorithms and functions
+* reversing a subarray:
+	int data[]={1,3,5,7,9,11,13,15,17,19};
+	reverse(data+2,data+6); //reverses 5,7,9,11. NOTE that the element at (data+6) is not included in the reversal. 'reverse' is a valid STL function in <algorithm>
+* using operators like '<' and size() for determination of emptiness is discouraged.
+* other STL functions which use iterators - find,min_element,max_element
+* sorting array in reverse order - sort(arr.rbegin(),arr.rend());
+* iterator declaration - append '::iterator' or '::const_iterator' or '::reverse_iterator' or '::const_reverse_iterator' 
+* typeof - very useful in defining macros for traversing a container in competitions //TODO
+* useful,to-be-remembered vector functions - insert, erase
+* useful functions in <algorithm> - reverse, sort, find, max_element, min_element
+
+built-in comparison for pairs
+
+Sets:
+* addition, removal, checking presence - O(log n)
+* set<int> s; s.insert(42); //inserts 42 if its not already present
+* s.erase(42);	//removes 42; can also pass an iterator, or begin and end iterators as arguements
+* iterating through a set:
+	set<int>::iterator it;
+	for (it=s.begin(),it!=s.end();it++)
+	{
+	}
+* s.find(42)!=s.end() //implies that 42 is present; returns an iterator; NOTE that set::find() is O(log n), while <algorithm> find() is O(n)
+* s.count(42) //can be either 0 or 1 for sets and maps; O(log n) complexity; 
+* Example - getting rid of all the duplicate elements in a an array:
+	set<int> s(arr.begin(),arr.end());
+	vector<int> arr2(s.begin(),s.end());	//elements of arr2 - no duplicates and SORTED in ascending order
+	
+Maps:
+* iterators are pairs of keys and values. values are accessed using it->second, or (*it).second
+* Don't change the key of an element of a map using an iterator
+* important difference between [] and find(): [] creates an element if it doesn't exist, find() doesn't
+
+* Internally maps and sets are almost always stored as red-black trees.
+* their elements are always sorted in ascending order when traversing these containers
+* the operators ++ and -- are defined on iterators of maps and sets
+
+Strings:
+* reversing a string - reverse(str.begin(),str.end())
+
+Algorithms:
+* commonly used <algorithm> functions - min,max,swap,sort,find,count (REMEMBER the distinction between the find and count for sets and maps, and the generic ones)
+* next_permutation, prev_permutation
+* ensure that the elements in the container are sorted before the first call to next_permutation(). Otherwise some permutations will never be checked.
+* rotate, accumulate
+
+String Streams:
+//LEFT FOR NOW
+
+Macros:
+* When a token from the left-hand side of #define appears in the right-hand side, it should be placed in braces to avoid many nontrivial problems.
+
+* rotate, accumulate, vector comparison - http://community.topcoder.com/stat?c=problem_solution&cr=7390224&rd=12174&pm=8508
+
+Java
+
+(Basics)
+try, finally - only required when reading, writing from file; not with system.in
+System.in, System.out, System.err - byte streams
+better to use (br readline and then split) than scanner (apropos enormous io problem in codechef)
+system.out.format (to specify the number of digits to be displayed after the decimal point)
+	* for new line, always use '%n' rather than '\n'
+java doesn't support macros
+String operations
+	compareTo
+
+	
+
+Data Structures:
+Segment trees
+bitsets (c++ stl)
+
+Concepts:
+Eulerian paths
+BIT
+Finding the minimum absolute distance (hist_spec) (nice trick - gives a clean and elegant code)
+
+
+Results:
+In an undirected graph, the sum of degrees of all the vertices is even(=2*number of edges). This implies that the number of vertices having odd degree will be even.
+
+Programming tricks:
+converting a char to string in c++:
+	#include <string>
+	#include <sstream>
+	stringstream ss;
+	string s;
+	char c='a';
+	ss<<c;
+	ss>>s;
+	//for int
+	int n = 1;
+	ss << n;
+	ss >> s;
+	
+Finding the number of set bits in the binary representation of a number: (the Hamming weight)
+http://stackoverflow.com/questions/109023/best-algorithm-to-count-the-number-of-set-bits-in-a-32-bit-integer
+int NumberOfSetBits(int i)
+{
+    i = i - ((i >> 1) & 0x55555555);
+    i = (i & 0x33333333) + ((i >> 2) & 0x33333333);
+    return (((i + (i >> 4)) & 0x0F0F0F0F) * 0x01010101) >> 24;
+}
+
+or the built-in function __builtin_popcount
+
+checking parity using & - doesn't work in ll - (CHECK)
