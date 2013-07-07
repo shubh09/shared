@@ -180,3 +180,5 @@ int NumberOfSetBits(int i)
 or the built-in function __builtin_popcount
 
 checking parity using & - doesn't work in ll - (CHECK)
+
+Append each submission made (whether in a contest, or during practice) with brief notes about changes from the previous submission.
