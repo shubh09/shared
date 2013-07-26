@@ -511,6 +511,30 @@ string stradd(string a,string b)	//requires char2str
     return ans;
 }
 
+string stradd(string a,string b)	//better. check correctness though.
+{
+    int l1=sz(a),l2=sz(b);
+    reverse(all(a));
+    reverse(all(b));
+    //making a and b of same length
+    string z(abs(l1-l2),'0');
+    if (l1>l2) b.append(z);
+    else a.append(z);
+    int l=max(l1,l2);
+    int i,c=0;
+    string ans=a;
+    FOR(i,0,l)
+    {
+        int temp=a[i]+b[i]+c-'0'-'0';
+        ans[i]=(temp%10)+'0';
+        c=temp/10;
+    }
+    string cstr=string(1,c+'0');
+    if (c>0) ans.append(cstr);
+    reverse(all(ans));
+    return ans;
+}
+
 vector<bool> sieve(int n)		//O(nloglogn)
 {
     //ans[i]=true if i is prime

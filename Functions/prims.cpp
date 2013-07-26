@@ -49,50 +49,43 @@ typedef long long ll;
 typedef vector <int> vi;
 typedef vector <vi> vvi;
 typedef vector <string> vstr;
-typedef pair<int,int> pii;
 typedef vector<vector<pair<int,int> > > TG;
 
-/**
- *runs Dijkstra's algorithm on the given graph, from the given starting point
- @param G a graph (directed or undirected)
- @param s the vertex from which the shortest paths are to be calculated
- @return a pair of int vectors d and pi each of size n- the length of the shortest path and the parent in the shortest-path tree respectively
- */
-pair<vi,vi> dijkstras(TG &G,int s)
+pair<int,vi> prims(TG G,int r)
 {
-    int n=sz(G);        //the number of vertices
-    set<pair<int,int> > q;       //the queue
-    //initialization
-    vi d(n,INF);
+    int n=sz(G);        //number of vertices
+    //initialize
     vi pi(n,-1);
-    d[s]=0;
-    q.insert(mp(0,s));
-	//the main loop
+    vi key(n,INF);
+    key[r]=0;
+    set<pair<int,int> > q;
+    q.insert(mp(0,r));
+    int cost=0;
     while (!q.empty())
     {
         pair<int,int> temp=*q.begin();
         q.erase(q.begin());
+        int d=temp.first;
         int u=temp.second;
-        int d2=temp.first;
-        assert(d[u]==d2);
+        cost+=d;
+        assert(d==key[u]);
         int deg=sz(G[u]);
-        int i=0;
+        int i;
         FOR(i,0,deg)
         {
             int v=G[u][i].first;
             int w_uv=G[u][i].second;
-            if (d[v]>d[u]+w_uv)
+            if (key[v]>w_uv)
             {
-                //the condition is important!
-                if (d[v]!=INF)
-                        q.erase(q.find(mp(d[v],v)));
-                d[v]=d[u]+w_uv;
+                if (key[v]!=INF)
+                    q.erase(q.find(mp(key[v],v)));
+                key[v]=w_uv;
                 pi[v]=u;
-                q.insert(mp(d[v],v));
+                q.insert(mp(key[v],v));
             }
         }
     }
-    return mp(d,pi);
+    return mp(cost,pi);
 }
 
 int main()
@@ -108,13 +101,14 @@ int main()
         //if undirected uncomment the following
         //G[b].pb(mp(a,w));
     }
-    sd(s);
-    vi d,pi;
-    pair<vi,vi> ans=dijkstras(G,s);
-    d=ans.first;
+    int cost;
+    vi pi;
+    pair<int,vi> ans=prims(G,0);
+    cost=ans.first;
     pi=ans.second;
-    FOR(i,0,n) printf("%d ",d[i]);
-    printf("\n");
+    p(cost);
     FOR(i,0,n) printf("%d ",pi[i]);
+    //if an element in pi other than the rth element is -1, it means that that vertex is unreachable from r, and a MST isn't possible
     printf("\n");
 }
+

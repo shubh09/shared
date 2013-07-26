@@ -22,6 +22,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <climits>
+#include <cassert>
 
 using namespace std;
 
@@ -40,18 +41,21 @@ using namespace std;
 #define UINF                                    UINT_MAX
 #define INF_LL                                  LLONG_MAX
 #define UINF_LL                                 ULLONG_MAX
+#define PI 3.14159265358979323846
 
 typedef vector <int> vi;
 typedef vector <vi> vvi;
 typedef vector <string> vstr;
 typedef long long ll;
+typedef pair<int,int> pii;
+typedef vector<vector<pair<int,int> > > TG;
+
 
 class $CLASSNAME$ {
 	public:
 	$RC$ $METHODNAME$($METHODPARMS$)
 	{
 		int i,j;
-
 	}
 	$TESTCODE$
 };
