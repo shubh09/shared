@@ -21,8 +21,6 @@
 #include <cmath>
 #include <cstdlib>
 #include <ctime>
-#include <climits>
-#include <cassert>
 
 using namespace std;
 
@@ -35,36 +33,48 @@ using namespace std;
 #define all(c)                                  (c).begin(),(c).end()
 #define tr(container,it)                        for (typeof(container.begin()) it=container.begin();it!=container.end();it++ )
 #define sz(a)                                   int((a).size())
-#define mp(a,b)                                 make_pair(a,b)
-#define ps(str)                                 printf("%s\n",str)
-
-#define INF                                     INT_MAX
-#define UINF                                    UINT_MAX
-#define INF_LL                                  LLONG_MAX
-#define UINF_LL                                 ULLONG_MAX
-#define PI 3.14159265358979323846
 
 typedef vector <int> vi;
 typedef vector <vi> vvi;
 typedef vector <string> vstr;
 typedef long long ll;
-typedef pair<int,int> pii;
-typedef vector<vector<pair<int,int> > > TG;
 
+int ceil(int a,int b)
+{
+    if (a%b==0) return a/b;
+    return a/b+1;
+}
 
-class $CLASSNAME$ {
+class TheJediTestDiv2 {
 	public:
-	$RC$ $METHODNAME$($METHODPARMS$)
+	int countSupervisors(vector <int> arr, int Y, int J) 
 	{
-		int i,j;
+            int s=sz(arr);
+            int i;
+            int ans=1000000000;
+            FOR(i,0,s)
+            {
+                int j;
+                int tans=arr[i]-Y;
+                if (tans<0) tans=0;
+                else tans=ceil(tans,J);
+                FOR(j,0,s)
+                {
+                    if (i!=j)
+                    {
+                        tans+=ceil(arr[j],J);
+                    }
+                }
+                ans=min(ans,tans);
+            }
+            return ans;
 	}
-	$TESTCODE$
+	
+
 };
 
-$BEGINCUT$
-int main()
-{
-	$CLASSNAME$ ___test; 
-	___test.run_test(-1); 
-} 
-$ENDCUT$
+
+
+// Powered by FileEdit
+// Powered by TZTester 1.01 [25-Feb-2003]
+// Powered by CodeProcessor
