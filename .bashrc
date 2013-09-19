@@ -108,8 +108,8 @@ fi
 
 #http_proxy=http://10.10.78.62:3128
 #export http_proxy
-#https_proxy=http://10.10.78.62:3128
-#export https_proxy
+https_proxy=http://10.10.78.62:3128
+export https_proxy
 LD_LIBRARY_PATH="/home/shubham/Sem8/CSL718/Asst1/Tejas/src/emulator/pin/obj-comm"
 export LD_LIBRARY_PATH
 
