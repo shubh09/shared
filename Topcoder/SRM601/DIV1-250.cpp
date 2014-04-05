@@ -82,6 +82,28 @@ class WinterAndPresents {
                 return ans;
 	}
 	
+	long long getNumber_simpler(vector <int> apple, vector <int> orange)
+	{
+		int i,j;
+                int n=sz(apple);
+                vi sum(n);
+                FOR(i,0,n) sum[i]=apple[i]+orange[i];
+                int X=*(min_element(all(sum)));
+                int x;
+                ll ans=0;
+                FOR(x,1,X+1)
+                {
+                    int lo=0,hi=0;
+                    FOR(i,0,n)
+                    {
+                        lo+=max(0,x-orange[i]);
+                        hi+=min(x,apple[i]);
+                    }
+                    ans+=(ll)(hi-lo+1);
+                }
+                return ans;
+	}
+	
 // BEGIN CUT HERE
 	public:
 	void run_test(int Case) { if ((Case == -1) || (Case == 0)) test_case_0(); if ((Case == -1) || (Case == 1)) test_case_1(); if ((Case == -1) || (Case == 2)) test_case_2(); if ((Case == -1) || (Case == 3)) test_case_3(); if ((Case == -1) || (Case == 4)) test_case_4(); }
