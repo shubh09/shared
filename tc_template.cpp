@@ -53,18 +53,16 @@ typedef vector<vector<pair<int,int> > > TG;
 
 
 class $CLASSNAME$ {
-	public:
-	$RC$ $METHODNAME$($METHODPARMS$)
-	{
-		int i,j;
+    public:
+    $RC$ $METHODNAME$($METHODPARMS$){
+            int i,j;
 	}
-	$TESTCODE$
+    $TESTCODE$
 };
 
 $BEGINCUT$
-int main()
-{
-	$CLASSNAME$ ___test; 
-	___test.run_test(-1); 
+int main() {
+    $CLASSNAME$ ___test; 
+    ___test.run_test(-1); 
 } 
 $ENDCUT$
